@@ -1,4 +1,4 @@
-import Image from "next/image";
+"use client";
 import "./index.css";
 import VerticalShadow from "./shadows/vertical";
 import HorizontalShadow from "./shadows/horizontal";
@@ -6,10 +6,16 @@ import Stars from "./stars";
 import Artist from "./artist";
 import Cover from "./cover";
 import Detail from "./detail";
+import useMusic from "./use";
+import Player from "./player";
 
 const Music = () => {
+  const { music } = useMusic();
+
   return (
     <>
+      {music?.src && <Player url={music.src} />}
+
       <div className="w-full h-screen bg-black flex justify-center items-center relative overflow-hidden">
         <Stars />
         <HorizontalShadow />
