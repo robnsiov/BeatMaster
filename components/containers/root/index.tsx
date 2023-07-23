@@ -1,6 +1,11 @@
+import RecoliContainer from "../recoil";
 import RootContainerImpl from "./types";
 
 const RootContainer = ({ children }: RootContainerImpl) => {
-  return <>{children}</>;
+  return (
+    <>
+      <RecoliContainer>{children}</RecoliContainer>
+    </>
+  );
 };
 export default RootContainer;
