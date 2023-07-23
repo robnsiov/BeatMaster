@@ -1,10 +1,13 @@
+import ReactQueryContainer from "../react-query";
 import RecoliContainer from "../recoil";
 import RootContainerImpl from "./types";
 
 const RootContainer = ({ children }: RootContainerImpl) => {
   return (
     <>
-      <RecoliContainer>{children}</RecoliContainer>
+      <ReactQueryContainer>
+        <RecoliContainer>{children}</RecoliContainer>
+      </ReactQueryContainer>
     </>
   );
 };
