@@ -1,30 +1,10 @@
-
 .heart-bg {
   animation: heartbeat-bg 2s 1s infinite;
 }
 .heart {
   animation: heartbeat 2s infinite;
 }
-.fade-scale-stars {
-  animation: fade-scale 3s 3s forwards;
-}
-.fade-scale-cover {
-  animation: fade-scale 3s forwards;
-}
-.fade-scale-artist {
-  animation: fade-scale 3s 2s forwards;
-}
-.fade-scale-detail {
-  animation: fade-scale 3s 1s forwards;
-}
-@keyframes fade-scale {
-  to {
-      filter: blur(0);
-      transform: scale(1);
-      opacity: 1;
-    }
-  
-}
+
 @keyframes heartbeat {
     0% {
       transform: scale(.99);

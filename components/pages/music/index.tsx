@@ -1,22 +1,18 @@
 "use client";
 import "./index.css";
-import VerticalShadow from "./shadows/vertical";
 import HorizontalShadow from "./shadows/horizontal";
 import Stars from "./stars";
 import Artist from "./artist";
-import Cover from "./cover";
 import Detail from "./detail";
 import useMusic from "./use";
-import Player from "./player";
 import Progress from "./indicator";
+import Cover from "./cover";
 
 const Music = () => {
   const { music } = useMusic();
 
   return (
     <>
-      {/* {music?.src && <Player url={music.src} />} */}
-
       <div className="w-full h-screen bg-black flex justify-center items-center relative overflow-hidden">
         <Progress />
         <Stars />
@@ -26,15 +22,7 @@ const Music = () => {
         xl:flex-col xl:justify-center"
         >
           <Artist />
-
-          <div
-            className="w-[40%] aspect-square mx-14 relative blur-md 
-          opacity-0 z-50 scale-110 fade-scale-cover xl:mx-0 xl:mt-10
-          xl:w-[450px] sm:w-[70%] 460px:w-[90%]"
-          >
-            <VerticalShadow />
-            <Cover />
-          </div>
+          <Cover />
           <Detail />
         </div>
       </div>
