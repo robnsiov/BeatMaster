@@ -2,12 +2,21 @@
 import { PlayCircle } from "iconsax-react";
 import Image from "next/image";
 import useHome from "./use";
+import cls from "classnames";
 
 const Home = () => {
-  const { goToMusicPage } = useHome();
+  const { goToMusicPage, hide } = useHome();
   return (
     <>
-      <div className="w-full h-screen overflow-hidden">
+      <div
+        className={cls(
+          `w-full h-screen overflow-hidden absolute
+           inset-0 z-[100] duration-700 transition-all`,
+          hide
+            ? "opacity-0 invisible scale-125"
+            : "opacity-100 visible scale-100"
+        )}
+      >
         <div className="absolute inset-0 z-10 flex justify-center items-center">
           <div onClick={goToMusicPage}>
             <PlayCircle

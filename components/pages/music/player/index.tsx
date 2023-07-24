@@ -14,12 +14,12 @@ const Player = ({ url }: { url: string }) => {
         >
           <Next
             className="active:scale-90 
-          transition-all duration-200 cursor-pointer hover:text-zinc-500"
+          transition-all duration-200 cursor-pointer"
             size="20"
           />
           <Previous
             className="active:scale-90 
-          transition-all duration-200 cursor-pointer hover:text-zinc-500"
+          transition-all duration-200 cursor-pointer"
             size="20"
           />
         </div>
@@ -34,13 +34,13 @@ const Player = ({ url }: { url: string }) => {
             volume: <></>,
             pause: (
               <Pause
-                className="text-white active:scale-90 transition-all duration-200 hover:text-zinc-500"
+                className="text-white active:scale-90 transition-all duration-200"
                 size="20"
               />
             ),
             play: (
               <Play
-                className="text-white active:scale-90 transition-all duration-200 hover:text-zinc-500"
+                className="text-white active:scale-90 transition-all duration-200"
                 size="20"
               />
             ),

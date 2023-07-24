@@ -7,26 +7,31 @@ import Detail from "./detail";
 import useMusic from "./use";
 import Progress from "./indicator";
 import Cover from "./cover";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Music = () => {
-  const { music } = useMusic();
+  const { music, show } = useMusic();
 
   return (
     <>
       <div className="w-full h-screen bg-black flex justify-center items-center relative overflow-hidden">
-        <Progress />
-        <div className="w-full h-full  flex justify-center items-center relative xl:bottom-6">
-          <Stars />
-          <HorizontalShadow />
-          <div
-            className="w-full h-full flex justify-between items-center max-w-7xl p-3
+        {show && (
+          <>
+            <Progress />
+            <div className="w-full h-full  flex justify-center items-center relative xl:bottom-6">
+              <Stars />
+              <HorizontalShadow />
+              <div
+                className="w-full h-full flex justify-between items-center max-w-7xl p-3
         xl:flex-col xl:justify-center"
-          >
-            <Artist />
-            <Cover />
-            <Detail />
-          </div>
-        </div>
+              >
+                <Artist />
+                <Cover />
+                <Detail />
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </>
   );
