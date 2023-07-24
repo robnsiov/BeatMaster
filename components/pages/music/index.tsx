@@ -8,15 +8,17 @@ import Cover from "./cover";
 import Detail from "./detail";
 import useMusic from "./use";
 import Player from "./player";
+import Progress from "./indicator";
 
 const Music = () => {
   const { music } = useMusic();
 
   return (
     <>
-      {music?.src && <Player url={music.src} />}
+      {/* {music?.src && <Player url={music.src} />} */}
 
       <div className="w-full h-screen bg-black flex justify-center items-center relative overflow-hidden">
+        <Progress />
         <Stars />
         <HorizontalShadow />
         <div
