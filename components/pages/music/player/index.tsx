@@ -7,18 +7,20 @@ import { Next, Pause, Play, Previous } from "iconsax-react";
 const Player = ({ url }: { url: string }) => {
   return (
     <>
-      <div className="w-full player relative 460px:bottom-1">
+      <div className="w-full player relative bottom-1">
         <div
           className="text-white absolute 
-        -bottom-1 left-0 right-0 flex justify-between items-center"
+        -bottom-1.5 left-0 right-0 flex justify-between items-center"
         >
           <Next
-            className="text-white active:scale-90 
-          transition-all duration-200 cursor-pointer"
+            className="active:scale-90 
+          transition-all duration-200 cursor-pointer hover:text-zinc-500"
+            size="20"
           />
           <Previous
-            className="text-white active:scale-90 
-          transition-all duration-200 cursor-pointer"
+            className="active:scale-90 
+          transition-all duration-200 cursor-pointer hover:text-zinc-500"
+            size="20"
           />
         </div>
         <AudioPlayer
@@ -31,10 +33,16 @@ const Player = ({ url }: { url: string }) => {
             next: <></>,
             volume: <></>,
             pause: (
-              <Pause className="text-white active:scale-90 transition-all duration-200" />
+              <Pause
+                className="text-white active:scale-90 transition-all duration-200 hover:text-zinc-500"
+                size="20"
+              />
             ),
             play: (
-              <Play className="text-white active:scale-90 transition-all duration-200" />
+              <Play
+                className="text-white active:scale-90 transition-all duration-200 hover:text-zinc-500"
+                size="20"
+              />
             ),
             previous: <></>,
             rewind: <></>,

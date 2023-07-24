@@ -15,15 +15,17 @@ const Music = () => {
     <>
       <div className="w-full h-screen bg-black flex justify-center items-center relative overflow-hidden">
         <Progress />
-        <Stars />
-        <HorizontalShadow />
-        <div
-          className="w-full h-full flex justify-between items-center max-w-7xl p-3
+        <div className="w-full h-full  flex justify-center items-center relative xl:bottom-6">
+          <Stars />
+          <HorizontalShadow />
+          <div
+            className="w-full h-full flex justify-between items-center max-w-7xl p-3
         xl:flex-col xl:justify-center"
-        >
-          <Artist />
-          <Cover />
-          <Detail />
+          >
+            <Artist />
+            <Cover />
+            <Detail />
+          </div>
         </div>
       </div>
     </>

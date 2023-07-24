@@ -7,7 +7,7 @@ const Progress = () => {
     <>
       <div
         className="absolute bottom-4 left-1/2 -translate-x-1/2
-        z-[60] overflow-hidden rounded-lg xl:bottom-3 460px:bottom-10"
+        z-[60] overflow-hidden rounded-lg  xl:bottom-3 460px:bottom-10"
       >
         <AnimatePresence>
           <motion.div
@@ -30,7 +30,7 @@ const Progress = () => {
               </div>
               <div
                 className="flex justify-center items-start flex-col uppercase text-white text-sm
-          tracking-widest ml-3 460px:hidden"
+          tracking-widest ml-3 md:hidden"
               >
                 <span>Asheghi nagaeidam</span>
                 <span>Amir tataloo</span>
