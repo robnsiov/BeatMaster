@@ -3,8 +3,10 @@ import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import "./index.css";
 import { Next, Pause, Play, Previous } from "iconsax-react";
+import usePlayer from "./use";
 
 const Player = ({ url }: { url: string }) => {
+  const { next, prev } = usePlayer();
   return (
     <>
       <div className="w-full player relative bottom-1">
@@ -16,11 +18,13 @@ const Player = ({ url }: { url: string }) => {
             className="active:scale-90 
           transition-all duration-200 cursor-pointer"
             size="20"
+            onClick={next}
           />
           <Previous
             className="active:scale-90 
           transition-all duration-200 cursor-pointer"
             size="20"
+            onClick={prev}
           />
         </div>
         <AudioPlayer

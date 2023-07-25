@@ -8,6 +8,7 @@ import useMusic from "./use";
 import Progress from "./indicator";
 import Cover from "./cover";
 import { AnimatePresence, motion } from "framer-motion";
+import Loading from "./loading";
 
 const Music = () => {
   const { music, show } = useMusic();
@@ -18,7 +19,8 @@ const Music = () => {
         {show && (
           <>
             <Progress />
-            <div className="w-full h-full  flex justify-center items-center relative xl:bottom-6">
+            <Loading />
+            <div className="w-full h-full  flex justify-center items-center relative">
               <Stars />
               <HorizontalShadow />
               <div
