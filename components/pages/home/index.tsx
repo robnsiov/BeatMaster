@@ -1,11 +1,14 @@
 "use client";
-import { PlayCircle } from "iconsax-react";
-import Image from "next/image";
 import useHome from "./use";
 import cls from "classnames";
+import ErrorIcon from "./icons/error";
+import PlayIcon from "./icons/play";
+import LoadingIcon from "./icons/loading";
+import Cover from "./cover";
 
 const Home = () => {
-  const { goToMusicPage, hide } = useHome();
+  const { goToMusicPage, hide, isFetching, isSuccess, isError, refetch } =
+    useHome();
   return (
     <>
       <div
@@ -17,27 +20,16 @@ const Home = () => {
             : "opacity-100 visible scale-100"
         )}
       >
+        <LoadingIcon isFetching={isFetching} />
         <div className="absolute inset-0 z-10 flex justify-center items-center">
-          <div onClick={goToMusicPage}>
-            <PlayCircle
-              className="text-white cursor-pointer md:hidden"
-              size="206"
-            />
-            <PlayCircle
-              className="text-white cursor-pointer hidden md:inline-block"
-              size="106"
-            />
-          </div>
-        </div>
-        <div className="w-full h-full relative blur-sm scale-110">
-          <Image
-            src={"/images/Amir Tataloo - Asheghi Nagaeidam.jpg"}
-            width="2000"
-            height="2000"
-            alt="cover"
-            className="w-full h-full object-cover object-top"
+          <PlayIcon
+            goToMusicPage={goToMusicPage}
+            isFetching={isFetching}
+            isSuccess={isSuccess}
           />
+          <ErrorIcon refetch={refetch} isError={isError} />
         </div>
+        <Cover />
       </div>
     </>
   );

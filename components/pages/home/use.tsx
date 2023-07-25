@@ -8,7 +8,7 @@ import { useState } from "react";
 const useHome = () => {
   const router = useRouter();
   const [hide, setHide] = useState(false);
-  const { isSuccess, data } = useQuery({
+  const { isSuccess, data, isFetching, isError, refetch } = useQuery({
     queryKey: ["music"],
     queryFn: () => getMusic<MusicApiImpl>("http://localhost:5000/active"),
   });
@@ -23,6 +23,6 @@ const useHome = () => {
     }
   };
 
-  return { goToMusicPage, hide };
+  return { goToMusicPage, hide, isFetching, isSuccess, isError, refetch };
 };
 export default useHome;
