@@ -19,7 +19,7 @@ const Detail = ({ details }: DetailImpl) => {
         <motion.div
           variants={itemVariants}
           animate={next ? "hide" : "show"}
-          transition={{ duration: 1.5, delay: 2 }}
+          transition={{ duration: 1.5, delay: 1.7 }}
           className="justify-start items-start
            flex-col"
         >

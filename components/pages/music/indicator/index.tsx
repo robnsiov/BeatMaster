@@ -36,23 +36,25 @@ const Progress = ({ artist, cover, musicSrc, musicName }: IndicatorImpl) => {
                 transition={{ duration: 1, delay: next ? 0 : 4 }}
               >
                 <div className="absolute inset-0 bg-primary rounded-lg opacity-70"></div>
-                <div className="relative z-10 p-2 flex justify-start items-center">
-                  <div className="min-w-[55px] max-w-[55px] aspect-square">
-                    <Image
-                      src={cover}
-                      width="100"
-                      height="100"
-                      alt="cover"
-                      className="w-full h-full object-cover rounded-lg"
-                    />
-                  </div>
-                  <div
-                    className="flex justify-center items-start flex-col uppercase 
+                <div className="relative z-10 p-2 flex justify-between items-center">
+                  <div className="flex justify-center items-center">
+                    <div className="min-w-[55px] max-w-[55px] aspect-square">
+                      <Image
+                        src={cover}
+                        width="100"
+                        height="100"
+                        alt="cover"
+                        className="w-full h-full object-cover rounded-lg"
+                      />
+                    </div>
+                    <div
+                      className="flex justify-center items-start flex-col uppercase 
                   text-white text-sm whitespace-nowrap
-                    tracking-widest ml-3 md:hidden"
-                  >
-                    <span>{musicName}</span>
-                    <span>{artist}</span>
+                    tracking-widest ml-3 md:hidden min-w-[160px] max-w-[160px]"
+                    >
+                      <span className="w-full truncate">{musicName}</span>
+                      <span className="w-full truncate">{artist}</span>
+                    </div>
                   </div>
                   <div className="max-w-[130px] min-w-[130px] ml-3">
                     <Player url={musicSrc} />
