@@ -9,7 +9,7 @@ const RootContainer = ({ children }: RootContainerImpl) => {
       <ReactQueryContainer>
         <RecoliContainer>
           {children}
-          {/* <Home /> */}
+          <Home />
         </RecoliContainer>
       </ReactQueryContainer>
     </>

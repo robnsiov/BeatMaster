@@ -2,6 +2,7 @@ import Image from "next/image";
 import VerticalShadow from "../shadows/vertical";
 import { AnimatePresence, motion } from "framer-motion";
 import useCover from "./use";
+import CoverImpl from "./types";
 
 const itemVariants = {
   translate: { translateY: "-150%", filter: "blur(30px)" },
@@ -9,7 +10,7 @@ const itemVariants = {
   show: { scale: 1, opacity: 1 },
 };
 
-const Cover = () => {
+const Cover = ({ src }: CoverImpl) => {
   const { isNextMusic: next } = useCover();
   return (
     <>
@@ -45,7 +46,7 @@ const Cover = () => {
               className="absolute inset-0 z-50"
             >
               <Image
-                src={"/images/Amir Tataloo - Asheghi Nagaeidam.jpg"}
+                src={src}
                 width="600"
                 height="600"
                 alt="cover"

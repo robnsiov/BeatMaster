@@ -1,12 +1,13 @@
 import { AnimatePresence, motion } from "framer-motion";
 import useDetail from "./use";
+import DetailImpl from "./types";
 
 const itemVariants = {
   hide: { scale: 0.9, opacity: 0, filter: "blur(30px)" },
   show: { scale: 1, opacity: 1, filter: "blur(0px)" },
 };
 
-const Detail = () => {
+const Detail = ({ details }: DetailImpl) => {
   const { isNextMusic: next } = useDetail();
   return (
     <>
@@ -30,26 +31,14 @@ const Detail = () => {
               exit={{ scale: 1.1, filter: "blur(0px)", opacity: 0 }}
               key={"detail"}
             >
-              <div>
-                <span className="text-zinc-300 font-thin">
-                  Lirics & melody :{" "}
-                </span>{" "}
-                <h3 className="inline-block font-semibold">Amir Tataloo</h3>{" "}
-              </div>
-              <div>
-                <span className="text-zinc-300 font-thin">Mix & Master : </span>{" "}
-                <h3 className="inline-block font-semibold">
-                  Soheil Khodabandeh
-                </h3>{" "}
-              </div>
-              <div>
-                <span className="text-zinc-300 font-thin">Cover Art : </span>{" "}
-                <h3 className="inline-block font-semibold">Damirchi</h3>{" "}
-              </div>
-              <div>
-                <span className="text-zinc-300 font-thin">3D Artist : </span>{" "}
-                <h3 className="inline-block font-semibold">Arman Shams</h3>{" "}
-              </div>
+              {details.map((det) => (
+                <div key={det.join("")}>
+                  <span className="text-zinc-300 font-thin">
+                    {det.at(0)} :{" "}
+                  </span>{" "}
+                  <h3 className="inline-block font-semibold">{det.at(1)}</h3>{" "}
+                </div>
+              ))}
             </motion.div>
           </AnimatePresence>
         </motion.div>

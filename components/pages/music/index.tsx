@@ -16,9 +16,14 @@ const Music = () => {
   return (
     <>
       <div className="w-full h-screen bg-black flex justify-center items-center relative overflow-hidden">
-        {show && (
+        {show && music?.data && (
           <>
-            <Progress />
+            <Progress
+              cover={music.data.cover}
+              musicName={music.data.name}
+              musicSrc={music.data.src}
+              artist={music.data.artist}
+            />
             <Loading />
             <div className="w-full h-full  flex justify-center items-center relative">
               <Stars />
@@ -27,9 +32,12 @@ const Music = () => {
                 className="w-full h-full flex justify-between items-center max-w-7xl p-3
         xl:flex-col xl:justify-center"
               >
-                <Artist />
-                <Cover />
-                <Detail />
+                <Artist
+                  artist={music.data.artist}
+                  musicName={music.data.name}
+                />
+                <Cover src={music.data.cover} />
+                <Detail details={music.data.details} />
               </div>
             </div>
           </>

@@ -2,13 +2,14 @@ import Image from "next/image";
 import Player from "../player";
 import { AnimatePresence, motion } from "framer-motion";
 import useIndicator from "./use";
+import IndicatorImpl from "./types";
 
 const itemVariants = {
   open: { scale: 1, filter: "blur(0px)", opacity: 1 },
   closed: { width: "70px" },
   translate: { translateY: "100px", filter: "blur(10px)" },
 };
-const Progress = () => {
+const Progress = ({ artist, cover, musicSrc, musicName }: IndicatorImpl) => {
   const { isNextMusic: next } = useIndicator();
   return (
     <>
@@ -38,7 +39,7 @@ const Progress = () => {
                 <div className="relative z-10 p-2 flex justify-start items-center">
                   <div className="min-w-[55px] max-w-[55px] aspect-square">
                     <Image
-                      src={"/images/Amir Tataloo - Asheghi Nagaeidam.jpg"}
+                      src={cover}
                       width="100"
                       height="100"
                       alt="cover"
@@ -50,11 +51,11 @@ const Progress = () => {
                   text-white text-sm whitespace-nowrap
                     tracking-widest ml-3 md:hidden"
                   >
-                    <span>Asheghi nagaeidam</span>
-                    <span>Amir tataloo</span>
+                    <span>{musicName}</span>
+                    <span>{artist}</span>
                   </div>
                   <div className="max-w-[130px] min-w-[130px] ml-3">
-                    <Player url="https://dl.musicguitars.ir/Music/Amir%20Tataloo/128/Amir%20Tataloo%20-%20Asheghi%20Nagaeidam%20[128].mp3" />
+                    <Player url={musicSrc} />
                   </div>
                 </div>
               </motion.div>

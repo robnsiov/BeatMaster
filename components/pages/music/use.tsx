@@ -27,6 +27,6 @@ const useMusic = () => {
     return () => clearTimeout(timerout);
   }, [showMusicPage]);
 
-  return { music: data?.data, show };
+  return { music: data, show };
 };
 export default useMusic;

@@ -1,11 +1,12 @@
 import { AnimatePresence, motion } from "framer-motion";
 import useArtist from "./use";
+import ArtistImpl from "./types";
 
 const itemVariants = {
   hide: { scale: 0.9, opacity: 0, filter: "blur(30px)" },
   show: { scale: 1, opacity: 1, filter: "blur(0px)" },
 };
-const Artist = () => {
+const Artist = ({ musicName, artist }: ArtistImpl) => {
   const { isNextMusic: next } = useArtist();
   return (
     <>
@@ -33,13 +34,13 @@ const Artist = () => {
                   className="uppercase text-3xl font-medium mb-1 
             whitespace-nowrap lg:whitespace-normal md:w-full md:text-xl"
                 >
-                  Asheghi Nagaeidam
+                  {musicName}
                 </h1>
                 <h2
                   className="uppercase tracking-[10px] w-full 
             text-left xl:text-center md:text-[13px]"
                 >
-                  Amir Tataloo
+                  {artist}
                 </h2>
               </div>
             </motion.div>
