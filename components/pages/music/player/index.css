@@ -13,7 +13,7 @@
     box-shadow: unset;
 }
 .player .rhap_progress-bar{
-    background-color: #0C254D;
+    background-color: var(--primary);
 }
 .player .rhap_progress-filled {
     background-color: #fff;

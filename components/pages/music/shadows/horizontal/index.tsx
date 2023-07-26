@@ -21,7 +21,7 @@ const HorizontalShadow = () => {
           transition={{ duration: 1.5, delay: 2 }}
           className="w-full h-full"
         >
-          <div className="w-full h-full bg-[#0C254D]"></div>
+          <div className="w-full h-full bg-primary"></div>
         </motion.div>
       </div>
     </>

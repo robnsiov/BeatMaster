@@ -10,7 +10,8 @@
             ["Mix & Master", "SOHEIL KHODABANDEH"],
             ["Cover Art", "DAMIRCHI"],
             ["3D Artist", "ARMAN SHAMS"]    
-        ]
+        ],
+        "color": "#0C254D"
     },
     "next" : {
         "cover": "/images/sarbar-amir-tataloo.jpg",
@@ -23,7 +24,8 @@
             ["Mix & Master", "Mehdi Moazam"],
             ["Cover Art", "Kasra Khadivar"],
             ["3D Artist", "Damirchi"]    
-        ]
+        ],
+        "color": "#085258"
     },
     "prev" : {
         "cover": "/images/Amir Tataloo - Asheghi Nagaeidam.jpg",
@@ -36,7 +38,8 @@
             ["Mix & Master", "SOHEIL KHODABANDEH"],
             ["Cover Art", "DAMIRCHI"],
             ["3D Artist", "ARMAN SHAMS"]    
-        ]
+        ], 
+        "color": "#0C254D"
     }
     
 }

@@ -35,7 +35,7 @@ const Progress = ({ artist, cover, musicSrc, musicName }: IndicatorImpl) => {
                 className="overflow-hidden"
                 transition={{ duration: 1, delay: next ? 0 : 4 }}
               >
-                <div className="absolute inset-0 bg-[#0C254D] rounded-lg opacity-70"></div>
+                <div className="absolute inset-0 bg-primary rounded-lg opacity-70"></div>
                 <div className="relative z-10 p-2 flex justify-start items-center">
                   <div className="min-w-[55px] max-w-[55px] aspect-square">
                     <Image

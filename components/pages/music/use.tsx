@@ -19,6 +19,11 @@ const useMusic = () => {
   });
 
   useEffect(() => {
+    if (data?.data.color)
+      document.documentElement.style.setProperty("--primary", data?.data.color);
+  }, [data?.data]);
+
+  useEffect(() => {
     let timerout: NodeJS.Timeout;
     if (showMusicPage)
       timerout = setTimeout(() => {
