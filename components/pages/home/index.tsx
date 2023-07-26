@@ -5,9 +5,10 @@ import ErrorIcon from "./icons/error";
 import PlayIcon from "./icons/play";
 import LoadingIcon from "./icons/loading";
 import Cover from "./cover";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Home = () => {
-  const { goToMusicPage, hide, isFetching, isSuccess, isError, refetch } =
+  const { goToMusicPage, hide, isFetching, isSuccess, isError, refetch, data } =
     useHome();
   return (
     <>
@@ -29,7 +30,17 @@ const Home = () => {
           />
           <ErrorIcon refetch={refetch} isError={isError} />
         </div>
-        <Cover />
+        <AnimatePresence>
+          {data?.data && (
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="w-full h-full"
+            >
+              <Cover src={data.data.cover} />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );

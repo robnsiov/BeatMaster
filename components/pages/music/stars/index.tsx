@@ -1,6 +1,11 @@
+"use client";
+
 import { AnimatePresence, motion } from "framer-motion";
+import useStars from "./use";
+import cls from "classnames";
 
 const Stars = () => {
+  const { isPlayed } = useStars();
   return (
     <>
       <div className="absolute inset-0 z-20">
@@ -16,6 +21,18 @@ const Stars = () => {
             <div id="stars"></div>
             <div id="stars2"></div>
             <div id="stars3"></div>
+            {/* <div
+              className={cls(isPlayed ? "run-anim" : "pause-anim")}
+              id="stars"
+            ></div>
+            <div
+              className={cls(isPlayed ? "run-anim" : "pause-anim")}
+              id="stars2"
+            ></div>
+            <div
+              className={cls(isPlayed ? "run-anim" : "pause-anim")}
+              id="stars3"
+            ></div> */}
           </motion.div>
         </AnimatePresence>
       </div>

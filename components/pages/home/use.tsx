@@ -23,6 +23,6 @@ const useHome = () => {
     }
   };
 
-  return { goToMusicPage, hide, isFetching, isSuccess, isError, refetch };
+  return { goToMusicPage, hide, isFetching, isSuccess, isError, refetch, data };
 };
 export default useHome;

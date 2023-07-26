@@ -3,6 +3,7 @@ import VerticalShadow from "../shadows/vertical";
 import { AnimatePresence, motion } from "framer-motion";
 import useCover from "./use";
 import CoverImpl from "./types";
+import cls from "classnames";
 
 const itemVariants = {
   translate: { translateY: "-150%", filter: "blur(30px)" },
@@ -11,7 +12,7 @@ const itemVariants = {
 };
 
 const Cover = ({ src }: CoverImpl) => {
-  const { isNextMusic: next } = useCover();
+  const { isNextMusic: next, isPlayed } = useCover();
   return (
     <>
       <div
@@ -50,7 +51,10 @@ const Cover = ({ src }: CoverImpl) => {
                 width="600"
                 height="600"
                 alt="cover"
-                className="w-full h-full object-cover rounded-[35px] relative heart"
+                className={cls(
+                  `w-full h-full object-cover rounded-[35px] relative heart`,
+                  isPlayed ? "run-anim" : "pause-anim"
+                )}
               />
             </motion.div>
           </motion.div>

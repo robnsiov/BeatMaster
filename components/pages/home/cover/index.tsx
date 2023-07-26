@@ -1,11 +1,12 @@
 import Image from "next/image";
+import CoverImpl from "./types";
 
-const Cover = () => {
+const Cover = ({ src }: CoverImpl) => {
   return (
     <>
       <div className="w-full h-full relative blur-sm scale-110">
         <Image
-          src={"/images/Amir Tataloo - Asheghi Nagaeidam.jpg"}
+          src={src}
           width="2000"
           height="2000"
           alt="cover"

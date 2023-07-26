@@ -1,4 +1,10 @@
+"use client";
+
+import useVerticalShadow from "./use";
+import cls from "classnames";
+
 const VerticalShadow = () => {
+  const { isPlayed } = useVerticalShadow();
   return (
     <>
       <div
@@ -6,12 +12,18 @@ const VerticalShadow = () => {
             scale-150 z-10 blur-3xl"
       ></div>
       <div
-        className="absolute -inset-3 bg-primary rounded-full
-             z-30  heart-bg"
+        className={cls(
+          `absolute -inset-3 bg-primary rounded-full
+             z-30  heart-bg`,
+          isPlayed ? "run-anim" : "pause-anim"
+        )}
       ></div>
       <div
-        className="absolute -inset-14 bg-primary rounded-full
-             z-20  heart-bg blur-2xl"
+        className={cls(
+          `absolute -inset-14 bg-primary rounded-full
+             z-20  heart-bg blur-2xl`,
+          isPlayed ? "run-anim" : "pause-anim"
+        )}
       ></div>
     </>
   );

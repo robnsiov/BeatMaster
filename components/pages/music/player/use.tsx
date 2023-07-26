@@ -5,13 +5,13 @@ import { useQuery } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
 import { useState, useEffect } from "react";
 import { UsePlayerImpl } from "./types";
+import isPlayedState from "@/context/is-played";
 
 const usePlayer = (audio: UsePlayerImpl) => {
   const [_, setIsNextMusic] = useRecoilState(isNextMusicState);
   const [fetchNextMusic, setFetchNextMusic] = useState(false);
   const [fetchPrevMusic, setFetchPrevMusic] = useState(false);
-  const [isPlay, setIsPlay] = useState(false);
-
+  const [isPlayed, setIsPlayed] = useRecoilState(isPlayedState);
   const [decInterval, setDec] = useState<NodeJS.Timer>();
   const [incInterval, setInc] = useState<NodeJS.Timer>();
 
@@ -26,6 +26,8 @@ const usePlayer = (audio: UsePlayerImpl) => {
     queryFn: () => getMusic<MusicApiImpl>("http://localhost:5000/prev"),
     enabled: fetchPrevMusic,
   });
+
+  useEffect(() => {}, []);
 
   useEffect(() => {
     if (!nextFetching || !prevFetching) {
@@ -90,7 +92,7 @@ const usePlayer = (audio: UsePlayerImpl) => {
   };
 
   const pause = () => {
-    setIsPlay(false);
+    setIsPlayed(false);
     decreseVolume();
     let timer;
     clearTimeout(timer);
@@ -99,7 +101,7 @@ const usePlayer = (audio: UsePlayerImpl) => {
     }, 1000);
   };
   const play = () => {
-    setIsPlay(true);
+    setIsPlayed(true);
     increaseVolume();
     let timer;
     clearTimeout(timer);
@@ -111,8 +113,8 @@ const usePlayer = (audio: UsePlayerImpl) => {
   return {
     next,
     prev,
-    isPlay,
-    setIsPlay,
+    isPlayed,
+    setIsPlayed,
     decreseVolume,
     pause,
     play,

@@ -13,7 +13,7 @@ const Player = ({ url }: { url: string }) => {
   // @ts-ignore
   const audio: HTMLAudioElement = playerRef.current?.audio?.current;
 
-  const { next, prev, isPlay, setIsPlay, pause, play } = usePlayer(audio);
+  const { next, prev, isPlayed, setIsPlayed, pause, play } = usePlayer(audio);
 
   return (
     <>
@@ -29,7 +29,7 @@ const Player = ({ url }: { url: string }) => {
             onClick={prev}
           />
           <div className="text-white cursor-pointer">
-            {isPlay ? (
+            {isPlayed ? (
               <Pause
                 className="active:scale-90 transition-all duration-200"
                 size="20"
@@ -54,8 +54,8 @@ const Player = ({ url }: { url: string }) => {
           src={url}
           autoPlay
           ref={playerRef}
-          onPause={() => setIsPlay(false)}
-          onPlay={() => setIsPlay(true)}
+          onPause={() => setIsPlayed(false)}
+          onPlay={() => setIsPlayed(true)}
           customIcons={{
             loop: <></>,
             forward: <></>,

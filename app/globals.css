@@ -5,3 +5,12 @@
 html {
     --primary: #000;
 }
+
+@layer utilities {
+    .pause-anim {
+        animation-play-state: paused !important;
+    } 
+    .run-anim {
+        animation-play-state: running !important;
+    } 
+}
