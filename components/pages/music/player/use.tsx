@@ -32,6 +32,7 @@ const usePlayer = (audio: UsePlayerImpl) => {
       setIsNextMusic(false);
       setFetchNextMusic(false);
       setFetchPrevMusic(false);
+      increaseVolume();
     }
   }, [nextFetching, prevFetching]);
 
@@ -39,6 +40,7 @@ const usePlayer = (audio: UsePlayerImpl) => {
     setTimeout(() => {
       setFetchNextMusic(true);
     }, 3000);
+    decreseVolume();
     setIsNextMusic(true);
   };
 
@@ -46,6 +48,7 @@ const usePlayer = (audio: UsePlayerImpl) => {
     setTimeout(() => {
       setFetchPrevMusic(true);
     }, 3000);
+    decreseVolume();
     setIsNextMusic(true);
   };
 
@@ -62,6 +65,7 @@ const usePlayer = (audio: UsePlayerImpl) => {
   };
 
   const decreseVolume = () => {
+    if (!audio) return;
     clearIntervals();
     const decInterval = setInterval(() => {
       clearInterval(incInterval);
@@ -73,6 +77,7 @@ const usePlayer = (audio: UsePlayerImpl) => {
     setDec(decInterval);
   };
   const increaseVolume = () => {
+    if (!audio) return;
     clearIntervals();
     const incInterval = setInterval(() => {
       clearInterval(decInterval);
