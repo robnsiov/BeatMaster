@@ -14,17 +14,17 @@ const Player = ({ url }: { url: string }) => {
           className="text-white absolute 
         -bottom-1.5 left-0 right-0 flex justify-between items-center"
         >
-          <Next
-            className="active:scale-90 
-          transition-all duration-200 cursor-pointer"
-            size="20"
-            onClick={next}
-          />
           <Previous
             className="active:scale-90 
           transition-all duration-200 cursor-pointer"
             size="20"
             onClick={prev}
+          />
+          <Next
+            className="active:scale-90 
+          transition-all duration-200 cursor-pointer"
+            size="20"
+            onClick={next}
           />
         </div>
         <AudioPlayer

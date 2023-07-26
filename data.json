@@ -11,5 +11,32 @@
             ["Cover Art", "DAMIRCHI"],
             ["3D Artist", "ARMAN SHAMS"]    
         ]
+    },
+    "next" : {
+        "cover": "/images/sarbar-amir-tataloo.jpg",
+        "src": "https://dl.musicguitars.ir/Music/Amir%20Tataloo/128/Amir%20Tataloo%20-%20Sarbar%20[128].mp3",
+        "slug": "sarbar",
+        "artist": "Amir Tataloo",
+        "name": "Sarbar",
+        "details": [
+            ["LIRICS & MELODY", "AMIR TATALOO"],
+            ["Mix & Master", "Mehdi Moazam"],
+            ["Cover Art", "Kasra Khadivar"],
+            ["3D Artist", "Damirchi"]    
+        ]
+    },
+    "prev" : {
+        "cover": "/images/Amir Tataloo - Asheghi Nagaeidam.jpg",
+        "src": "https://dl.musicguitars.ir/Music/Amir%20Tataloo/128/Amir%20Tataloo%20-%20Asheghi%20Nagaeidam%20[128].mp3",
+        "slug": "asheghi-nagaeidam",
+        "artist": "Amir Tataloo",
+        "name": "Asheghi Nagaeidam",
+        "details": [
+            ["LIRICS & MELODY", "AMIR TATALOO"],
+            ["Mix & Master", "SOHEIL KHODABANDEH"],
+            ["Cover Art", "DAMIRCHI"],
+            ["3D Artist", "ARMAN SHAMS"]    
+        ]
     }
+    
 }

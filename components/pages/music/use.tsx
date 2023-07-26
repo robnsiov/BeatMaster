@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
 const useMusic = () => {
-  const [show, setShow] = useState(!false);
+  const [show, setShow] = useState(false);
   const { data } = useQuery({
     queryKey: ["music"],
     queryFn: () => getMusic<MusicApiImpl>("http://localhost:5000/active"),
