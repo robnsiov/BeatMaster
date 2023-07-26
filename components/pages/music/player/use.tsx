@@ -5,14 +5,15 @@ import { useQuery } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
 import { useState, useEffect } from "react";
 import { UsePlayerImpl } from "./types";
-import { useTimeout } from "@mantine/hooks";
 
 const usePlayer = (audio: UsePlayerImpl) => {
   const [_, setIsNextMusic] = useRecoilState(isNextMusicState);
   const [fetchNextMusic, setFetchNextMusic] = useState(false);
   const [fetchPrevMusic, setFetchPrevMusic] = useState(false);
   const [isPlay, setIsPlay] = useState(false);
-  const { start: startPause } = useTimeout(() => audio.pause(), 1000);
+
+  const [decInterval, setDec] = useState<NodeJS.Timer>();
+  const [incInterval, setInc] = useState<NodeJS.Timer>();
 
   const { isFetching: nextFetching } = useQuery({
     queryKey: ["music"],
@@ -55,9 +56,6 @@ const usePlayer = (audio: UsePlayerImpl) => {
     getPrevMusic();
   };
 
-  let decInterval: NodeJS.Timer;
-  let incInterval: NodeJS.Timer;
-
   const clearIntervals = () => {
     clearInterval(decInterval);
     clearInterval(incInterval);
@@ -65,21 +63,25 @@ const usePlayer = (audio: UsePlayerImpl) => {
 
   const decreseVolume = () => {
     clearIntervals();
-    decInterval = setInterval(() => {
+    const decInterval = setInterval(() => {
+      clearInterval(incInterval);
       const volume = +audio.volume.toFixed(1);
       console.log(volume);
       if (volume >= 0.1) audio.volume = volume - 0.1;
       else clearInterval(decInterval);
     }, 100);
+    setDec(decInterval);
   };
   const increaseVolume = () => {
     clearIntervals();
-    incInterval = setInterval(() => {
+    const incInterval = setInterval(() => {
+      clearInterval(decInterval);
       const volume = +audio.volume.toFixed(1);
       console.log(volume);
       if (volume <= 0.9) audio.volume = volume + 0.1;
       else clearInterval(incInterval);
     }, 100);
+    setInc(incInterval);
   };
 
   const pause = () => {
