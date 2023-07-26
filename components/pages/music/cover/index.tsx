@@ -16,7 +16,7 @@ const Cover = ({ src }: CoverImpl) => {
     <>
       <div
         className="w-[40%] aspect-square mx-14 relative
-           z-50 xl:mx-0 xl:mt-10
+           z-50 xl:mx-0 xl:mt-1 md:-mt-4
           xl:w-[450px] sm:w-[70%] 460px:w-[90%]"
       >
         <AnimatePresence>
