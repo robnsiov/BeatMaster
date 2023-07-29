@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import useIndicator from "./use";
+import { francico } from "@/app/layout";
 
 const itemVariants = {
   open: { scale: 1, filter: "blur(0px)", opacity: 1 },
@@ -32,7 +33,7 @@ const Subtitle = () => {
               className="w-[35%] xl:w-[400px] sm:w-[60%] 460px:w-[80%] text-center"
               transition={{ duration: 1, delay: next ? 0 : 4 }}
             >
-              <span className="text-white">متن تست</span>
+              <span className={`text-white ${francico.className}`}></span>
             </motion.div>
           </AnimatePresence>
         </motion.div>

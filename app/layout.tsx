@@ -2,10 +2,17 @@ import RootContainer from "@/components/containers/root";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import localFont from "next/font/local";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+// Font files can be colocated inside of `app`
+export const francico = localFont({
+  src: "../public/fonts/francico/francico.otf",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
