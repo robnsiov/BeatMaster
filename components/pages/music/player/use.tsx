@@ -15,18 +15,22 @@ const usePlayer = (audio: UsePlayerImpl) => {
   const [isPlayed, setIsPlayed] = useRecoilState(isPlayedState);
   const [decInterval, setDec] = useState<NodeJS.Timer>();
   const [incInterval, setInc] = useState<NodeJS.Timer>();
+  const [subtitleInterval, setSubtitleIntervaln] = useState<NodeJS.Timer>();
+
   const setSubtitle = useSetRecoilState(subtitleState);
 
-  const subTitles = [
-    { start: 1, end: 7, subtitle: "1 to 7" },
-    { start: 7, end: 10, subtitle: "7 to 10" },
-    { start: 10.1, end: 14, subtitle: "10.1 to 14" },
-    { start: 16, end: 18, subtitle: "16 to 18" },
-  ];
+  const { data } = useQuery({
+    queryKey: ["music"],
+    queryFn: () => ({} as { data: MusicApiImpl } | undefined),
+    enabled: false,
+  });
 
   const setTimer = () => {
-    if (audio) {
-      setInterval(() => {
+    clearInterval(subtitleInterval);
+    setSubtitle("");
+    if (audio && data?.data && data.data?.subtitles) {
+      const subTitles = data.data.subtitles;
+      const timer = setInterval(() => {
         const currentTime = +audio.currentTime.toFixed(1);
         for (const subtitle of subTitles) {
           if (currentTime >= subtitle.start && currentTime <= subtitle.end) {
@@ -37,12 +41,13 @@ const usePlayer = (audio: UsePlayerImpl) => {
         setSubtitle("");
         console.log(currentTime);
       }, 100);
+      setSubtitleIntervaln(timer);
     }
   };
 
   useEffect(() => {
-    // setTimer();
-  }, [audio]);
+    setTimer();
+  }, [audio, data]);
 
   const { isFetching: nextFetching } = useQuery({
     queryKey: ["music"],

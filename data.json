@@ -11,7 +11,14 @@
             ["Cover Art", "DAMIRCHI"],
             ["3D Artist", "ARMAN SHAMS"]    
         ],
-        "color": "#0C254D"
+        "color": "#0C254D",
+         "subtitles" : [
+           { "start": 1, "end": 7, "subtitle": "سلام چطوری؟" },
+           { "start": 7, "end": 10, "subtitle": "حالت خوبه؟" },
+           { "start": 10.1, "end": 14, "subtitle": "این یک تست از زیر نویس است" },
+           { "start": 16, "end": 18, "subtitle": "این دو تست از زیر نویس است" },
+           { "start": 18, "end": 2009, "subtitle": "این سه تست از بالا نویس است" }
+        ]
     },
     "next" : {
         "cover": "/images/sarbar-amir-tataloo.jpg",

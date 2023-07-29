@@ -1,8 +1,10 @@
 import isNextMusicState from "@/context/is-next-music";
+import subtitleState from "@/context/subtitle";
 import { useRecoilValue } from "recoil";
 
-const useIndicator = () => {
+const useSubtitle = () => {
   const isNextMusic = useRecoilValue(isNextMusicState);
-  return { isNextMusic };
+  const subtitle = useRecoilValue(subtitleState);
+  return { isNextMusic, subtitle };
 };
-export default useIndicator;
+export default useSubtitle;
