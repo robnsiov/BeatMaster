@@ -9,6 +9,7 @@ import Progress from "./indicator";
 import Cover from "./cover";
 import { AnimatePresence, motion } from "framer-motion";
 import Loading from "./loading";
+import Subtitle from "./subtitle";
 
 const Music = () => {
   const { music, show } = useMusic();
@@ -24,6 +25,7 @@ const Music = () => {
               musicSrc={music.data.src}
               artist={music.data.artist}
             />
+            <Subtitle />
             <Loading />
             <div className="w-full h-full  flex justify-center items-center relative">
               <Stars />

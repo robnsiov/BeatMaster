@@ -4,8 +4,7 @@ import "react-h5-audio-player/lib/styles.css";
 import "./index.css";
 import { Next, Pause, Play, Previous } from "iconsax-react";
 import usePlayer from "./use";
-import { useEffect, useRef } from "react";
-import { useTimeout } from "@mantine/hooks";
+import { useRef } from "react";
 
 const Player = ({ url }: { url: string }) => {
   const playerRef = useRef(null);
@@ -17,6 +16,25 @@ const Player = ({ url }: { url: string }) => {
 
   return (
     <>
+      {/* <div
+        className="w-full h-full bg-red-200 z-[200] fixed inset-0 
+      flex justify-center items-center"
+      >
+        <div className="absolute">
+          <AnimatePresence>
+            {subTitle && (
+              <motion.div
+                initial={{ scale: 1.1, filter: "blur(10px)", opacity: 0 }}
+                animate={{ scale: 1, filter: "blur(0px)", opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                exit={{ scale: 1.1, filter: "blur(0px)", opacity: 0 }}
+              >
+                {subTitle}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div> */}
       <div className="w-full player relative bottom-1">
         <div
           className="text-white absolute 
