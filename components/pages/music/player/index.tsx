@@ -52,6 +52,8 @@ const Player = ({ url }: { url: string }) => {
         <AudioPlayer
           src={url}
           autoPlay
+          loop={false}
+          onEnded={next}
           ref={playerRef}
           onPause={() => setIsPlayed(false)}
           onPlay={() => setIsPlayed(true)}
