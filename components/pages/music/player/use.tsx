@@ -94,7 +94,6 @@ const usePlayer = (audio: UsePlayerImpl) => {
   const prev = () => {
     getPrevMusic();
   };
-  
 
   const clearIntervals = () => {
     clearInterval(decInterval);

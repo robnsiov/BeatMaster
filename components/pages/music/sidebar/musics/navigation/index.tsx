@@ -1,8 +1,13 @@
 import { motion } from "framer-motion";
-import { MenuItem } from "../music";
 import { useQuery } from "@tanstack/react-query";
 import getMusic from "@/utils/get-music";
-import { MusicApiImpl } from "@/types/music";
+import MusicsApiImpl, { MusicApiImpl } from "@/types/music";
+import { useEffect } from "react";
+import { useSetRecoilState } from "recoil";
+import MusicsState from "@/context/musics";
+import MusicItem from "../music";
+import MusicsImpl from "./types";
+import LoadingIcon from "@/components/pages/home/icons/loading";
 
 const variants = {
   open: {
@@ -13,26 +18,42 @@ const variants = {
   },
 };
 
-const Music = () => {
-  const { isFetching } = useQuery({
+const Musics = ({ toggleOpen }: MusicsImpl) => {
+  const setMusicsState = useSetRecoilState(MusicsState);
+
+  const { isFetching, data } = useQuery({
     queryKey: ["musics"],
-    queryFn: () => getMusic<Array<MusicApiImpl>>("http://localhost:5000/next"),
-    enabled: false,
+    queryFn: () => getMusic<MusicsApiImpl>("http://localhost:5000/musics"),
+    enabled: true,
   });
+
+  const musics = data?.data;
+
+  useEffect(() => {
+    if (musics) {
+      setMusicsState(musics);
+    }
+  }, [musics]);
+
+  const onClick = () => {
+    toggleOpen(false);
+  };
 
   return (
     <>
-      <motion.ul
-        variants={variants}
-        className="m-0 absolute top-[100px] 460px:top-12 w-full px-5"
-      >
-        {itemIds.map((i) => (
-          <MenuItem key={i} />
-        ))}
+      <motion.ul variants={variants} className="m-0">
+        <div className="w-full flex justify-center items-center">
+          <div className="relative">
+            <LoadingIcon isFetching={isFetching} />
+          </div>
+        </div>
+        {musics &&
+          musics.map((music) => (
+            <MusicItem onClick={onClick} music={music} key={music.slug} />
+          ))}
       </motion.ul>
     </>
   );
 };
 
-export default Music;
-const itemIds = Array(20).fill("");
+export default Musics;

@@ -2,13 +2,15 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import { useDimensions } from "./use";
 import { MenuToggle } from "./menu-toggle";
-import Music from "./musics/navigation";
+import Musics from "./musics/navigation";
 import { useEffect } from "react";
+import cls from "classnames";
 
 const Sidebar = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { dimensions, isOpen, toggleOpen, variants } = useDimensions();
+  const { dimensions, isOpen, toggleOpen, variants, musicsLen } =
+    useDimensions();
   useEffect(() => {
     if (containerRef.current) {
       dimensions.current.width = containerRef.current.offsetWidth;
@@ -33,12 +35,13 @@ const Sidebar = () => {
         className="absolute inset-0 bg-primary opacity-30 460px:opacity-50"
       ></motion.div>
       <div
-        className={`w-full transition-all duration-200 ${
+        className={cls(
+          `absolute top-[100px] 460px:top-12 w-full px-5 transition-all duration-200`,
           isOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
-        style={{ transitionDuration: isOpen ? "0.2s" : `${20 * 0.1}s` }}
+        )}
+        style={{ transitionDuration: isOpen ? "0.2s" : `${musicsLen * 0.1}s` }}
       >
-        <Music />
+        <Musics toggleOpen={toggleOpen} />
       </div>
       <MenuToggle toggle={() => toggleOpen()} />
     </motion.nav>
