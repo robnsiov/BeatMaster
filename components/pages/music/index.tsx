@@ -10,6 +10,7 @@ import Cover from "./cover";
 import { AnimatePresence, motion } from "framer-motion";
 import Loading from "./loading";
 import Subtitle from "./subtitle";
+import Sidebar from "./sidebar";
 
 const Music = () => {
   const { music, show } = useMusic();
@@ -25,6 +26,8 @@ const Music = () => {
               musicSrc={music.data.src}
               artist={music.data.artist}
             />
+            {/* <div className="absolute z-[71] blur-sm bg-primary inset-0 opacity-90  scale-125"></div> */}
+            <Sidebar />
             <Subtitle />
             <Loading />
             <div className="w-full h-full  flex justify-center items-center relative">
