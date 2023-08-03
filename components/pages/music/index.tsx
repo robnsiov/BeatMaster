@@ -11,6 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Loading from "./loading";
 import Subtitle from "./subtitle";
 import Sidebar from "./sidebar";
+import Auth from "./auth";
 
 const Music = () => {
   const { music, show } = useMusic();
@@ -30,6 +31,7 @@ const Music = () => {
             <Sidebar />
             <Subtitle />
             <Loading />
+            <Auth />
             <div className="w-full h-full  flex justify-center items-center relative">
               <Stars />
               <HorizontalShadow />
