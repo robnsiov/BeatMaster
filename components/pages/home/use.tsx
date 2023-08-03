@@ -1,6 +1,6 @@
 import { queryClient } from "@/components/containers/react-query";
 import { MusicApiImpl } from "@/types/music";
-import getMusic from "@/utils/request";
+import request from "@/utils/request";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -10,7 +10,8 @@ const useHome = () => {
   const [hide, setHide] = useState(false);
   const { isSuccess, data, isFetching, isError, refetch } = useQuery({
     queryKey: ["music"],
-    queryFn: () => getMusic<MusicApiImpl>("http://localhost:5000/active"),
+    queryFn: () =>
+      request<MusicApiImpl>({ url: "http://localhost:5000/active" }),
   });
 
   const goToMusicPage = () => {

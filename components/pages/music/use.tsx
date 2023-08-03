@@ -1,6 +1,6 @@
 import { queryClient } from "@/components/containers/react-query";
 import { MusicApiImpl } from "@/types/music";
-import getMusic from "@/utils/request";
+import request from "@/utils/request";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
@@ -8,7 +8,8 @@ const useMusic = () => {
   const [show, setShow] = useState(false);
   const { data } = useQuery({
     queryKey: ["music"],
-    queryFn: () => getMusic<MusicApiImpl>("http://localhost:5000/active"),
+    queryFn: () =>
+      request<MusicApiImpl>({ url: "http://localhost:5000/active" }),
     enabled: false,
   });
 

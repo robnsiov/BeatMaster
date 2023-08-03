@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
-import getMusic from "@/utils/request";
+import request from "@/utils/request";
 import MusicsApiImpl, { MusicApiImpl } from "@/types/music";
 import { useEffect } from "react";
 import { useSetRecoilState } from "recoil";
@@ -23,7 +23,8 @@ const Musics = ({ toggleOpen }: MusicsImpl) => {
 
   const { isFetching, data } = useQuery({
     queryKey: ["musics"],
-    queryFn: () => getMusic<MusicsApiImpl>("http://localhost:5000/musics"),
+    queryFn: () =>
+      request<MusicsApiImpl>({ url: "http://localhost:5000/musics" }),
     enabled: true,
   });
 
