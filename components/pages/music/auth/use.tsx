@@ -10,18 +10,12 @@ import zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRecoilState } from "recoil";
 import showAuthFormState from "@/context/show-auth-form";
-import { useEffect } from "react";
 
 const useAuth = () => {
   const [formType, setFormType] = useState<FormTypeImpl>("Sing in");
   const [isLoading, setIsLoading] = useState(false);
-  const [showOverlay, setShowOverlay] = useRecoilState(showAuthFormState);
-  const [showForm, setShowForm] = useState(true);
+  const [showAuthForm, setShowAuthForm] = useRecoilState(showAuthFormState);
   const notify = (message: string) => toast.error(message);
-
-  useEffect(() => {
-    setShowForm(showOverlay);
-  }, [showOverlay]);
 
   const colors = useCallback(() => {
     const primaryColor =
@@ -51,13 +45,6 @@ const useAuth = () => {
     return axios(url);
   };
 
-  const handleShowForm = () => {
-    setTimeout(() => {
-      setShowOverlay(false);
-    }, 500);
-    setShowForm(false);
-  };
-
   const mutation = useMutation({
     mutationFn: (data: InputsImpl) => qyeryFunc(data),
     onMutate() {
@@ -68,7 +55,7 @@ const useAuth = () => {
     },
     onSuccess() {
       notify("successfully");
-      handleShowForm();
+      setShowAuthForm(false);
     },
     onError() {
       // duplicate email
@@ -97,9 +84,8 @@ const useAuth = () => {
     isLoading,
     changeFormType,
     errors,
-    showOverlay,
-    showForm,
-    handleShowForm,
+    showAuthForm,
+    setShowAuthForm,
   };
 };
 export default useAuth;
