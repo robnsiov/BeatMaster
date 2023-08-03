@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormTypeImpl, InputsImpl } from "./types";
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";
 import zod from "zod";
@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRecoilState } from "recoil";
 import showAuthFormState from "@/context/show-auth-form";
 import isAuthenticatedState from "@/context/is-authenticated";
+import { MusicApiImpl } from "@/types/music";
 
 const useAuth = () => {
   const [formType, setFormType] = useState<FormTypeImpl>("Sing in");
@@ -20,9 +21,15 @@ const useAuth = () => {
   const [showAuthForm, setShowAuthForm] = useRecoilState(showAuthFormState);
   const notify = (message: string) => toast.error(message);
 
+  const { data } = useQuery({
+    queryKey: ["music"],
+    queryFn: () => ({} as { data: MusicApiImpl } | undefined),
+    enabled: false,
+  });
+
   const colors = useCallback(() => {
-    const primaryColor =
-      document.documentElement.style.getPropertyValue("--primary");
+    const primaryColor = data?.data.color;
+
     return {
       formBackground: color(primaryColor).alpha(0.5) as any,
       inputBackground: color(primaryColor).darken(0.3).alpha(0.8) as any,
@@ -30,7 +37,7 @@ const useAuth = () => {
       buttonBackground: color(primaryColor).darken(0.5).alpha(0.8) as any,
       buttonBorder: color(primaryColor).darken(0.8).alpha(0.4) as any,
     };
-  }, []);
+  }, [data?.data.color]);
 
   const validation = zod.object({
     email: zod.string().email(),
