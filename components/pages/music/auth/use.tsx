@@ -1,17 +1,17 @@
 import color from "color";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormTypeImpl, InputsImpl } from "./types";
 import { useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import toast from "react-hot-toast";
 import zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRecoilState } from "recoil";
 import showAuthFormState from "@/context/show-auth-form";
 import isAuthenticatedState from "@/context/is-authenticated";
 import { MusicApiImpl } from "@/types/music";
+import makeToast from "@/utils/request/make-taost";
 
 const useAuth = () => {
   const [formType, setFormType] = useState<FormTypeImpl>("Sing in");
@@ -19,7 +19,6 @@ const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] =
     useRecoilState(isAuthenticatedState);
   const [showAuthForm, setShowAuthForm] = useRecoilState(showAuthFormState);
-  const notify = (message: string) => toast.error(message);
 
   const { data } = useQuery({
     queryKey: ["music"],
@@ -64,17 +63,17 @@ const useAuth = () => {
       setIsLoading(false);
     },
     onSuccess() {
-      notify("successfully");
+      makeToast({ msg: "successfully", type: "success" });
       setShowAuthForm(false);
       setIsAuthenticated("isAuthenticated");
       // set token on cookie or localstorage
     },
     onError() {
       // duplicate email
-      // notify("duplicate email");
+      // makeToast({ msg: "duplicate email", type: "error" });
 
       // server error
-      notify("server error");
+      makeToast({ msg: "server error", type: "error" });
     },
   });
 
