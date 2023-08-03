@@ -17,11 +17,15 @@ const Auth = () => {
     errors,
     showAuthForm,
     setShowAuthForm,
+    isAuthenticated,
   } = useAuth();
 
   return (
     <>
-      <Modal open={showAuthForm} setOpen={setShowAuthForm}>
+      <Modal
+        open={showAuthForm && isAuthenticated !== "isAuthenticated"}
+        setOpen={setShowAuthForm}
+      >
         <div
           style={{ background: colors.formBackground }}
           className="p-5 w-full max-w-md"

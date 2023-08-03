@@ -10,10 +10,13 @@ import zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRecoilState } from "recoil";
 import showAuthFormState from "@/context/show-auth-form";
+import isAuthenticatedState from "@/context/is-authenticated";
 
 const useAuth = () => {
   const [formType, setFormType] = useState<FormTypeImpl>("Sing in");
   const [isLoading, setIsLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] =
+    useRecoilState(isAuthenticatedState);
   const [showAuthForm, setShowAuthForm] = useRecoilState(showAuthFormState);
   const notify = (message: string) => toast.error(message);
 
@@ -56,6 +59,8 @@ const useAuth = () => {
     onSuccess() {
       notify("successfully");
       setShowAuthForm(false);
+      setIsAuthenticated("isAuthenticated");
+      // set token on cookie or localstorage
     },
     onError() {
       // duplicate email
@@ -86,6 +91,7 @@ const useAuth = () => {
     errors,
     showAuthForm,
     setShowAuthForm,
+    isAuthenticated,
   };
 };
 export default useAuth;
