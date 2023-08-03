@@ -12,10 +12,12 @@ import Loading from "./loading";
 import Subtitle from "./subtitle";
 import Sidebar from "./sidebar";
 import Auth from "./auth";
+import { useRecoilState } from "recoil";
+import showAuthFormState from "@/context/show-auth-form";
 
 const Music = () => {
   const { music, show } = useMusic();
-
+  const [, setD] = useRecoilState(showAuthFormState);
   return (
     <>
       <div className="w-full h-screen bg-black flex justify-center items-center relative overflow-hidden">
@@ -32,7 +34,10 @@ const Music = () => {
             <Subtitle />
             <Loading />
             <Auth />
-            <div className="w-full h-full  flex justify-center items-center relative">
+            <div
+              onClick={() => setD(true)}
+              className="w-full h-full  flex justify-center items-center relative"
+            >
               <Stars />
               <HorizontalShadow />
               <div
