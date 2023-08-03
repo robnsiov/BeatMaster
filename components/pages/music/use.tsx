@@ -1,6 +1,6 @@
 import { queryClient } from "@/components/containers/react-query";
 import { MusicApiImpl } from "@/types/music";
-import getMusic from "@/utils/get-music";
+import getMusic from "@/utils/request";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 

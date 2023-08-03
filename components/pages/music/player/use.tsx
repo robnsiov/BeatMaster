@@ -1,6 +1,6 @@
 import isNextMusicState from "@/context/is-next-music";
 import { MusicApiImpl } from "@/types/music";
-import getMusic from "@/utils/get-music";
+import getMusic from "@/utils/request";
 import { useQuery } from "@tanstack/react-query";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { useState, useEffect } from "react";

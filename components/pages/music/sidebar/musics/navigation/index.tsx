@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
-import getMusic from "@/utils/get-music";
+import getMusic from "@/utils/request";
 import MusicsApiImpl, { MusicApiImpl } from "@/types/music";
 import { useEffect } from "react";
 import { useSetRecoilState } from "recoil";
