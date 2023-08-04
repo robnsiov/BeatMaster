@@ -14,6 +14,7 @@ import Sidebar from "./sidebar";
 import Auth from "./auth";
 import { useRecoilState } from "recoil";
 import showAuthFormState from "@/context/show-auth-form";
+import AddToPlaylist from "./add-to-playlist";
 
 const Music = () => {
   const { music, show } = useMusic();
@@ -31,11 +32,13 @@ const Music = () => {
             />
             {/* <div className="absolute z-[71] blur-sm bg-primary inset-0 opacity-90  scale-125"></div> */}
             <Sidebar />
+            <AddToPlaylist />
             <Subtitle />
             <Loading />
             <Auth />
             <div
-              onClick={() => setD(true)}
+              // onClick={() => setD(true)}
+
               className="w-full h-full  flex justify-center items-center relative"
             >
               <Stars />
