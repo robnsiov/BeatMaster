@@ -13,7 +13,7 @@ const Artist = ({ musicName, artist }: ArtistImpl) => {
       <div
         className="flex justify-end items-start  text-white
              w-[30%] relative z-[60] 
-               xl:w-none rtl xl:ltr xl:text-center xl:-top-7 md:-top-10"
+               xl:w-auto rtl xl:ltr xl:text-center xl:-top-7 md:-top-10"
       >
         <motion.div
           variants={itemVariants}
