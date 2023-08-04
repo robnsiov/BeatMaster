@@ -1,8 +1,11 @@
+import Music from "@/components/pages/music";
+
 const Page = () => {
   return (
     <>
-      <div className="w-full h-screen bg-black"></div>
+      <Music />
     </>
   );
 };
+
 export default Page;

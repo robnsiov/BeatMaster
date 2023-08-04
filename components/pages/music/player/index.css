@@ -1,0 +1,43 @@
+.player .rhap_time, 
+.rhap_volume-controls,
+.player .rhap_progress-indicator,
+.player .rhap_rewind-button,
+.player .rhap_forward-button, 
+.player .rhap_repeat-button {
+    display: none !important;
+}
+.player .rhap_container{
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    box-shadow: unset;
+}
+.player .rhap_progress-bar{
+    background-color: var(--primary);
+}
+.player .rhap_progress-filled {
+    background-color: #fff;
+}
+.player .rhap_download-progress {
+    display: none !important;
+}
+.player .rhap_stacked .rhap_controls-section {
+    margin-top: 0 !important;
+}
+.player .rhap_main-controls-button{
+    width: auto;
+    height: auto;
+    margin: 0 !important;
+}
+.player .rhap_progress-container{
+    margin: 0 !important;
+}
+.player .rhap_main-controls {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 26px;
+}
+.player .rhap_additional-controls{
+    margin-top: 20px;
+}
