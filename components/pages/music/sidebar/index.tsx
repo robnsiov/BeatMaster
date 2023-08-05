@@ -2,9 +2,9 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import { useDimensions } from "./use";
 import { MenuToggle } from "./menu-toggle";
-import Musics from "./musics/navigation";
 import { useEffect } from "react";
 import cls from "classnames";
+import Tabs from "./tabs";
 
 const Sidebar = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -21,7 +21,7 @@ const Sidebar = () => {
   return (
     <motion.nav
       initial={false}
-      animate={isOpen ? "open" : "closed"}
+      animate={!isOpen ? "open" : "closed"}
       custom={dimensions.current.height}
       ref={containerRef}
       className="sidebar absolute inset-0 w-[300px] z-[71]"
@@ -36,14 +36,13 @@ const Sidebar = () => {
       ></motion.div>
       <div
         className={cls(
-          `absolute top-[100px] 460px:top-12 w-full px-5 transition-all duration-200`,
-          isOpen ? "opacity-100 visible" : "opacity-0 invisible"
+          `absolute top-20 460px:top-12 w-full px-5 transition-all duration-200`,
+          !isOpen ? "opacity-100 visible" : "opacity-0 invisible"
         )}
-        style={{ transitionDuration: isOpen ? "0.2s" : `${musicsLen * 0.1}s` }}
       >
-        <Musics toggleOpen={toggleOpen} />
+        <Tabs toggleOpen={toggleOpen} />
       </div>
-      <MenuToggle toggle={() => toggleOpen()} />
+      <MenuToggle toggle={toggleOpen} />
     </motion.nav>
   );
 };

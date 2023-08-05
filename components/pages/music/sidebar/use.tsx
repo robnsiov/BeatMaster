@@ -5,7 +5,10 @@ import { useRecoilValue } from "recoil";
 export const useDimensions = () => {
   const musics = useRecoilValue(MusicsState);
   const dimensions = useRef({ width: 0, height: 0 });
-  const [isOpen, toggleOpen] = useCycle(false, true);
+  const [isOpen, toggleOpenCycle] = useCycle(false, true);
+  const toggleOpen = () => {
+    toggleOpenCycle();
+  };
   const musicsLen = musics.length || 5;
   console.log(musicsLen);
   const variants = {
