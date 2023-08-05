@@ -2,14 +2,15 @@ import { queryClient } from "@/components/containers/react-query";
 import { MusicApiImpl } from "@/types/music";
 import request from "@/utils/request";
 import { useQuery } from "@tanstack/react-query";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const useHome = () => {
   const router = useRouter();
   const pathName = usePathname();
   const [hide, setHide] = useState(false);
-  const noSlashMusicSlug = pathName.slice(1);
+  const searchParams = useSearchParams();
+  const noSlashMusicSlug = searchParams.get("music");
   const url = noSlashMusicSlug
     ? `http://localhost:5000/musics/${noSlashMusicSlug}`
     : "http://localhost:5000/active";
@@ -26,7 +27,7 @@ const useHome = () => {
 
   const goToMusicPage = () => {
     if (isSuccess) {
-      router.push(`/${data.data.slug}`);
+      router.push(`/musics?name=${data.data.slug}`);
       queryClient.setQueryData(["show-music-page"], true);
       setTimeout(() => {
         setHide(true);

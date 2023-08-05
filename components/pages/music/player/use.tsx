@@ -7,8 +7,11 @@ import { useState, useEffect } from "react";
 import { UsePlayerImpl } from "./types";
 import isPlayedState from "@/context/is-played";
 import subtitleState from "@/context/subtitle";
+import { useRouter } from "next/navigation";
 
 const usePlayer = (audio: UsePlayerImpl) => {
+  const router = useRouter();
+
   const [_, setIsNextMusic] = useRecoilState(isNextMusicState);
   const [fetchNextMusic, setFetchNextMusic] = useState(false);
   const [fetchPrevMusic, setFetchPrevMusic] = useState(false);
@@ -68,6 +71,7 @@ const usePlayer = (audio: UsePlayerImpl) => {
       setIsNextMusic(false);
       setFetchNextMusic(false);
       setFetchPrevMusic(false);
+      router.push(`/musics?name=${data?.data.slug}`);
       increaseVolume();
     }
   }, [nextFetching, prevFetching]);
