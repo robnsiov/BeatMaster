@@ -1,5 +1,5 @@
 import isNextMusicState from "@/context/is-next-music";
-import { MusicApiImpl } from "@/types/music";
+import MusicsApiImpl, { MusicApiImpl } from "@/types/music";
 import request from "@/utils/request";
 import { useQuery } from "@tanstack/react-query";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -7,14 +7,16 @@ import { useState, useEffect } from "react";
 import { UsePlayerImpl } from "./types";
 import isPlayedState from "@/context/is-played";
 import subtitleState from "@/context/subtitle";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useDidUpdate } from "@mantine/hooks";
+import { queryClient } from "@/components/containers/react-query";
 
 const usePlayer = (audio: UsePlayerImpl) => {
   const router = useRouter();
-
+  const searchParams = useSearchParams();
+  const musicParam = searchParams.get("name");
+  const playlistParam = searchParams.get("playlist");
   const [_, setIsNextMusic] = useRecoilState(isNextMusicState);
-  const [fetchNextMusic, setFetchNextMusic] = useState(false);
-  const [fetchPrevMusic, setFetchPrevMusic] = useState(false);
   const [isPlayed, setIsPlayed] = useRecoilState(isPlayedState);
   const [decInterval, setDec] = useState<NodeJS.Timer>();
   const [incInterval, setInc] = useState<NodeJS.Timer>();
@@ -42,7 +44,6 @@ const usePlayer = (audio: UsePlayerImpl) => {
           }
         }
         setSubtitle("");
-        console.log(currentTime);
       }, 100);
       setSubtitleIntervaln(timer);
     }
@@ -52,33 +53,84 @@ const usePlayer = (audio: UsePlayerImpl) => {
     setTimer();
   }, [audio, data]);
 
-  const { isFetching: nextFetching } = useQuery({
-    queryKey: ["music"],
-    queryFn: () => request<MusicApiImpl>({ url: "http://localhost:5000/next" }),
-    enabled: fetchNextMusic,
+  // useEffect(() => {
+  //   if (!nextFetching || !prevFetching) {
+  //     setIsNextMusic(false);
+  //     setFetchNextMusic(false);
+  //     setFetchPrevMusic(false);
+  //     router.push(`/musics?name=${data?.data.slug}`);
+  //     increaseVolume();
+  //   }
+  // }, [nextFetching, prevFetching]);
+  const { data: musicsArray } = useQuery({
+    queryKey: ["musics", { isPlaylist: false }],
+    queryFn: () => ({} as { data: MusicsApiImpl } | undefined),
+    enabled: false,
   });
 
-  const { isFetching: prevFetching } = useQuery({
-    queryKey: ["music"],
-    queryFn: () => request<MusicApiImpl>({ url: "http://localhost:5000/prev" }),
-    enabled: fetchPrevMusic,
+  const { data: plasylistArray } = useQuery({
+    queryKey: ["musics", { isPlaylist: true }],
+    queryFn: () => ({} as { data: MusicsApiImpl } | undefined),
+    enabled: false,
   });
 
-  useEffect(() => {}, []);
-
-  useEffect(() => {
-    if (!nextFetching || !prevFetching) {
+  const nextMusic = (songs: MusicsApiImpl, music: MusicApiImpl) => {
+    let musics = songs;
+    if (musics.length === 0 && musicsArray?.data) {
+      musics = musicsArray?.data;
+    }
+    let index = musics.findIndex(({ slug }) => slug === music.slug);
+    if (index !== undefined) {
+      index += 1;
+      if (index <= musics.length - 1) {
+        queryClient.setQueryData(["music"], { data: musics[index] });
+      } else {
+        queryClient.setQueryData(["music"], { data: musics[0] });
+      }
       setIsNextMusic(false);
-      setFetchNextMusic(false);
-      setFetchPrevMusic(false);
-      router.push(`/musics?name=${data?.data.slug}`);
+      router.push(`/musics?name=${data?.data.slug}&playlist=${playlistParam}`);
       increaseVolume();
     }
-  }, [nextFetching, prevFetching]);
+  };
+  const prevMusic = (songs: MusicsApiImpl, music: MusicApiImpl) => {
+    let musics = songs;
+    if (musics.length === 0 && musicsArray?.data) {
+      musics = musicsArray?.data;
+    }
+    let index = musics.findIndex(({ slug }) => slug === music.slug);
+    if (index !== undefined) {
+      index -= 1;
+      if (index >= 0) {
+        queryClient.setQueryData(["music"], { data: musics[index] });
+      } else {
+        queryClient.setQueryData(["music"], { data: musics[0] });
+      }
+      setIsNextMusic(false);
+      router.push(`/musics?name=${data?.data.slug}&playlist=${playlistParam}`);
+      increaseVolume();
+    }
+  };
+
+  const findNextMusic = () => {
+    const musics = musicsArray?.data;
+    const playlist = plasylistArray?.data;
+    const music = data?.data;
+    if (!music) return;
+    if (playlistParam === "false" && musics) nextMusic(musics, music);
+    else if (playlistParam === "true" && playlist) nextMusic(playlist, music);
+  };
+  const findPrevMusic = () => {
+    const musics = musicsArray?.data;
+    const playlist = plasylistArray?.data;
+    const music = data?.data;
+    if (!music) return;
+    if (playlistParam === "false" && musics) prevMusic(musics, music);
+    else if (playlistParam === "true" && playlist) prevMusic(playlist, music);
+  };
 
   const getNextMusic = () => {
     setTimeout(() => {
-      setFetchNextMusic(true);
+      findNextMusic();
     }, 3000);
     decreseVolume();
     setIsNextMusic(true);
@@ -86,7 +138,7 @@ const usePlayer = (audio: UsePlayerImpl) => {
 
   const getPrevMusic = () => {
     setTimeout(() => {
-      setFetchPrevMusic(true);
+      findPrevMusic();
     }, 3000);
     decreseVolume();
     setIsNextMusic(true);
@@ -110,7 +162,6 @@ const usePlayer = (audio: UsePlayerImpl) => {
     const decInterval = setInterval(() => {
       clearInterval(incInterval);
       const volume = +audio.volume.toFixed(1);
-      console.log(volume);
       if (volume >= 0.1) audio.volume = volume - 0.1;
       else clearInterval(decInterval);
     }, 100);
@@ -122,7 +173,6 @@ const usePlayer = (audio: UsePlayerImpl) => {
     const incInterval = setInterval(() => {
       clearInterval(decInterval);
       const volume = +audio.volume.toFixed(1);
-      console.log(volume);
       if (volume <= 0.9) audio.volume = volume + 0.1;
       else clearInterval(incInterval);
     }, 100);
@@ -147,6 +197,10 @@ const usePlayer = (audio: UsePlayerImpl) => {
       audio.play();
     }, 1000);
   };
+
+  // useDidUpdate(() => {
+  //   getNextMusic();
+  // }, [musicParam]);
 
   return {
     next,

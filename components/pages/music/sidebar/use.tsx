@@ -10,7 +10,6 @@ export const useDimensions = () => {
     toggleOpenCycle();
   };
   const musicsLen = musics.length || 5;
-  console.log(musicsLen);
   const variants = {
     open: (height = 1000) => ({
       clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,

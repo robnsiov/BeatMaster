@@ -8,9 +8,8 @@ import { UseMusicsImpl } from "./types";
 
 const useMusics = ({ isPlaylist }: UseMusicsImpl) => {
   const setMusicsState = useSetRecoilState(MusicsState);
-
   const { isFetching, data } = useQuery({
-    queryKey: ["musics", isPlaylist],
+    queryKey: ["musics", { isPlaylist }],
     queryFn: () =>
       request<MusicsApiImpl>({
         url: isPlaylist
@@ -28,8 +27,6 @@ const useMusics = ({ isPlaylist }: UseMusicsImpl) => {
       setMusicsState(musics);
     }
   }, [musics]);
-
-  console.log(isFetching);
 
   return { isFetching, musics };
 };

@@ -7,12 +7,12 @@ import { useEffect, useState } from "react";
 
 const useHome = () => {
   const router = useRouter();
-  const pathName = usePathname();
   const [hide, setHide] = useState(false);
   const searchParams = useSearchParams();
-  const noSlashMusicSlug = searchParams.get("music");
-  const url = noSlashMusicSlug
-    ? `http://localhost:5000/musics/${noSlashMusicSlug}`
+  const musicParam = searchParams.get("name");
+  const playlistParam = searchParams.get("playlist");
+  const url = musicParam
+    ? `http://localhost:5000/musics/${musicParam}`
     : "http://localhost:5000/active";
   const { isSuccess, data, isFetching, isError, refetch } = useQuery({
     queryKey: ["music"],
@@ -20,14 +20,16 @@ const useHome = () => {
   });
 
   useEffect(() => {
-    if (noSlashMusicSlug && isError) {
+    if (musicParam && isError) {
       router.push("/not-found/404");
     }
-  }, [isError, noSlashMusicSlug]);
+  }, [isError, musicParam]);
 
   const goToMusicPage = () => {
     if (isSuccess) {
-      router.push(`/musics?name=${data.data.slug}`);
+      router.push(
+        `/musics?name=${data.data.slug}&playlist=${playlistParam ?? false}`
+      );
       queryClient.setQueryData(["show-music-page"], true);
       setTimeout(() => {
         setHide(true);

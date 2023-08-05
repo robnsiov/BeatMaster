@@ -14,7 +14,7 @@ const variants = {
   },
 };
 
-const Musics = ({ toggleOpen, isPlaylist }: MusicsImpl) => {
+const Musics = ({ toggleOpen, isPlaylist = false }: MusicsImpl) => {
   const { isFetching, musics } = useMusics({ isPlaylist });
   return (
     <>
@@ -43,6 +43,7 @@ const Musics = ({ toggleOpen, isPlaylist }: MusicsImpl) => {
             >
               {musics.map((music: MusicApiImpl) => (
                 <MusicItem
+                  isPlaylist={isPlaylist}
                   onClick={toggleOpen}
                   music={music}
                   key={music.slug}
