@@ -2,9 +2,9 @@
 
 import { Heart } from "iconsax-react";
 import { motion, AnimatePresence } from "framer-motion";
-import useUserAction from "./use";
 import cls from "classnames";
 import LoadingIcon from "../../home/icons/loading";
+import useAddToPlaylist from "./use";
 
 const itemVariants = {
   hide: { scale: 0.9, opacity: 0, filter: "blur(30px)" },
@@ -18,7 +18,7 @@ const AddToPlaylist = () => {
     isLoading,
     isToPlaylistFetching,
     isNextMusic: next,
-  } = useUserAction();
+  } = useAddToPlaylist();
 
   return (
     <>

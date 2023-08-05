@@ -82,12 +82,16 @@ const useAddToPlaylist = () => {
   });
 
   const isNotAuthenticated = () => {
-    makeToast({ msg: "you are'nt authenticated!", type: "error" });
+    makeToast({
+      msg: "you are'nt authenticated!",
+      type: "error",
+      options: { duration: 2000 },
+    });
     setShowAuthForm(true);
   };
 
   const changePlaylist = () => {
-    if (isAuthenticated === "notAuthenticated") isNotAuthenticated();
+    if (isAuthenticated !== "isAuthenticated") isNotAuthenticated();
     else {
       const added = !toPlaylist?.added;
       likeMutation.mutate({ added });
