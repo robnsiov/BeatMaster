@@ -3,6 +3,7 @@ import Image from "next/image";
 import MusicItemImpl from "./types";
 import Link from "next/link";
 import { boolean } from "zod";
+import { queryClient } from "@/components/containers/react-query";
 
 const variants = {
   open: {
@@ -36,6 +37,7 @@ const MusicItem = ({
     >
       <div className="absolute inset-0 rounded-md bg-primary opacity-70"></div>
       <Link
+        onClick={() => queryClient.setQueryData(["from-sidebar"], true)}
         href={{
           pathname: "/musics",
           query: { name: music.slug, playlist: isPlaylist },

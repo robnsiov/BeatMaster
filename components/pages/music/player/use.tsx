@@ -1,6 +1,5 @@
 import isNextMusicState from "@/context/is-next-music";
 import MusicsApiImpl, { MusicApiImpl } from "@/types/music";
-import request from "@/utils/request";
 import { useQuery } from "@tanstack/react-query";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { useState, useEffect } from "react";
@@ -133,6 +132,7 @@ const usePlayer = (audio: UsePlayerImpl) => {
       findNextMusic();
     }, 3000);
     decreseVolume();
+    queryClient.setQueryData(["from-sidebar"], false);
     setIsNextMusic(true);
   };
 
@@ -140,6 +140,7 @@ const usePlayer = (audio: UsePlayerImpl) => {
     setTimeout(() => {
       findPrevMusic();
     }, 3000);
+    queryClient.setQueryData(["from-sidebar"], false);
     decreseVolume();
     setIsNextMusic(true);
   };
@@ -198,9 +199,10 @@ const usePlayer = (audio: UsePlayerImpl) => {
     }, 1000);
   };
 
-  // useDidUpdate(() => {
-  //   getNextMusic();
-  // }, [musicParam]);
+  useDidUpdate(() => {
+    const fromSidebar = queryClient.getQueryData(["from-sidebar"]);
+    if (fromSidebar) getNextMusic();
+  }, [musicParam]);
 
   return {
     next,
