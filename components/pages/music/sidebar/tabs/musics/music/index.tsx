@@ -2,8 +2,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import MusicItemImpl from "./types";
 import Link from "next/link";
-import { boolean } from "zod";
 import { queryClient } from "@/components/containers/react-query";
+import cls from "classnames";
+import useMusicItem from "./use";
 
 const variants = {
   open: {
@@ -27,13 +28,18 @@ const MusicItem = ({
   onClick = () => {},
   isPlaylist,
 }: MusicItemImpl) => {
+  const { musicNameParam } = useMusicItem();
   return (
     <motion.li
       variants={variants}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       onClick={onClick}
-      className="w-full mb-3 flex items-center cursor-pointer p-1 relative"
+      className={cls(
+        `w-full mb-3 flex items-center cursor-pointer p-1 relative 
+      rounded-md duration-200 transition-all`,
+        { "border-2 border-primary": musicNameParam === music.slug }
+      )}
     >
       <div className="absolute inset-0 rounded-md bg-primary opacity-70"></div>
       <Link
