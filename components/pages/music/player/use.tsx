@@ -81,13 +81,14 @@ const usePlayer = (audio: UsePlayerImpl) => {
     let index = musics.findIndex(({ slug }) => slug === music.slug);
     if (index !== undefined) {
       index += 1;
-      if (index <= musics.length - 1) {
-        queryClient.setQueryData(["music"], { data: musics[index] });
-      } else {
-        queryClient.setQueryData(["music"], { data: musics[0] });
-      }
+      let selectedMusic: MusicApiImpl;
+      if (index <= musics.length - 1) selectedMusic = musics[index];
+      else selectedMusic = musics[0];
+      queryClient.setQueryData(["music"], { data: selectedMusic });
       setIsNextMusic(false);
-      router.push(`/musics?name=${data?.data.slug}&playlist=${playlistParam}`);
+      router.push(
+        `/musics?name=${selectedMusic.slug}&playlist=${playlistParam}`
+      );
       increaseVolume();
     }
   };
@@ -99,13 +100,14 @@ const usePlayer = (audio: UsePlayerImpl) => {
     let index = musics.findIndex(({ slug }) => slug === music.slug);
     if (index !== undefined) {
       index -= 1;
-      if (index >= 0) {
-        queryClient.setQueryData(["music"], { data: musics[index] });
-      } else {
-        queryClient.setQueryData(["music"], { data: musics[0] });
-      }
+      let selectedMusic: MusicApiImpl;
+      if (index > 0) selectedMusic = musics[index];
+      else selectedMusic = musics[0];
+      queryClient.setQueryData(["music"], { data: selectedMusic });
       setIsNextMusic(false);
-      router.push(`/musics?name=${data?.data.slug}&playlist=${playlistParam}`);
+      router.push(
+        `/musics?name=${selectedMusic.slug}&playlist=${playlistParam}`
+      );
       increaseVolume();
     }
   };
@@ -201,7 +203,9 @@ const usePlayer = (audio: UsePlayerImpl) => {
 
   useDidUpdate(() => {
     const fromSidebar = queryClient.getQueryData(["from-sidebar"]);
-    if (fromSidebar) getNextMusic();
+    if (fromSidebar) {
+      getNextMusic();
+    }
   }, [musicParam]);
 
   return {
