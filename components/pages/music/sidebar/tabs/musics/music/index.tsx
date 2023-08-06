@@ -33,7 +33,7 @@ const MusicItem = ({
   return (
     <motion.li
       variants={variants}
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ scale: 0.95 }}
       whileTap={{ scale: 0.95 }}
       onClick={onClick}
       className={cls(

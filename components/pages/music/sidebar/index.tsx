@@ -36,7 +36,7 @@ const Sidebar = () => {
       ></motion.div>
       <div
         className={cls(
-          `absolute top-20 460px:top-12 w-full px-5 transition-all duration-200`,
+          `absolute top-20 460px:top-12 w-full  transition-all duration-200`,
           !isOpen ? "opacity-100 visible" : "opacity-0 invisible"
         )}
       >

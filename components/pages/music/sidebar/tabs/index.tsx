@@ -11,7 +11,7 @@ const Tabs = ({ toggleOpen }: TabsImpl) => {
   return (
     <>
       <div className="w-full flex justify-center items-center flex-col">
-        <div className="w-full flex justify-center items-center">
+        <div className="w-full flex justify-center items-center px-5">
           <Tab
             onClick={() => setActiveTab("musics")}
             active={activeTab === "musics"}

@@ -4,6 +4,7 @@ import MusicItem from "./music";
 import LoadingIcon from "@/components/pages/home/icons/loading";
 import MusicsImpl from "./types";
 import useMusics from "./use";
+import { Scrollbars } from "react-custom-scrollbars-2";
 
 const variants = {
   open: {
@@ -18,7 +19,10 @@ const Musics = ({ toggleOpen, isPlaylist = false }: MusicsImpl) => {
   const { isFetching, musics } = useMusics({ isPlaylist });
   return (
     <>
-      <motion.ul variants={variants} className="m-0">
+      <motion.ul
+        variants={variants}
+        className="m-0 flex justify-center items-center w-full"
+      >
         <AnimatePresence>
           {isFetching && (
             <motion.div
@@ -35,22 +39,30 @@ const Musics = ({ toggleOpen, isPlaylist = false }: MusicsImpl) => {
           )}
         </AnimatePresence>
         <AnimatePresence>
-          {musics && (
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              {musics.map((music: MusicApiImpl) => (
-                <MusicItem
-                  isPlaylist={isPlaylist}
-                  onClick={toggleOpen}
-                  music={music}
-                  key={music.slug}
-                />
-              ))}
-            </motion.div>
-          )}
+          <Scrollbars
+            style={{ width: 290, height: 600 }}
+            renderThumbVertical={() => (
+              <div className="w-1.5 cursor-pointer rounded-lg h-full bg-primary"></div>
+            )}
+          >
+            {musics && (
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mr-7 relative -right-3"
+              >
+                {musics.map((music: MusicApiImpl) => (
+                  <MusicItem
+                    isPlaylist={isPlaylist}
+                    onClick={toggleOpen}
+                    music={music}
+                    key={music.slug}
+                  />
+                ))}
+              </motion.div>
+            )}
+          </Scrollbars>
         </AnimatePresence>
       </motion.ul>
     </>
