@@ -5,6 +5,7 @@ import Link from "next/link";
 import { queryClient } from "@/components/containers/react-query";
 import cls from "classnames";
 import useMusicItem from "./use";
+import PlayingAnim from "./playing-anim";
 
 const variants = {
   open: {
@@ -28,7 +29,7 @@ const MusicItem = ({
   onClick = () => {},
   isPlaylist,
 }: MusicItemImpl) => {
-  const { musicNameParam } = useMusicItem();
+  const { musicNameParam, isPlayed } = useMusicItem();
   return (
     <motion.li
       variants={variants}
@@ -50,6 +51,12 @@ const MusicItem = ({
         }}
         className="flex justify-start items-center w-full relative z-10"
       >
+        {musicNameParam === music.slug && (
+          <div className="absolute bottom-1 right-1  z-10">
+            <PlayingAnim isPlayed={isPlayed} />
+          </div>
+        )}
+
         <div className="min-w-[55px] max-w-[55px] aspect-square">
           <Image
             src={music.cover}
@@ -65,7 +72,9 @@ const MusicItem = ({
                     tracking-widest ml-3  max-w-[160px]"
         >
           <span className="w-full truncate">{music.name}</span>
-          <span className="w-full truncate text-[12px]">{music.artist}</span>
+          <span className="w-full truncate text-[12px] pr-2">
+            {music.artist}
+          </span>
         </div>
       </Link>
     </motion.li>
