@@ -6,7 +6,6 @@ const useMusicItem = () => {
   const searchParams = useSearchParams();
   const isPlayed = useRecoilValue(isPlayedState);
   const musicNameParam = searchParams.get("name");
-  console.log(musicNameParam);
   return { musicNameParam, isPlayed };
 };
 export default useMusicItem;

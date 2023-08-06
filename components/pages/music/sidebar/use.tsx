@@ -1,6 +1,8 @@
 import { useCycle } from "framer-motion";
 import { useRef } from "react";
+import { useViewportSize } from "@mantine/hooks";
 export const useDimensions = () => {
+  const { width } = useViewportSize();
   const dimensions = useRef({ width: 0, height: 0 });
   const [isOpen, toggleOpenCycle] = useCycle(false, true);
   const toggleOpen = () => {
@@ -25,5 +27,5 @@ export const useDimensions = () => {
       },
     },
   };
-  return { dimensions, isOpen, toggleOpen, variants };
+  return { dimensions, isOpen, toggleOpen, variants, width };
 };

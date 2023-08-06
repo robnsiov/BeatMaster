@@ -49,7 +49,7 @@ const usePlayer = (audio: UsePlayerImpl) => {
   };
 
   useEffect(() => {
-    setTimer();
+    if (typeof window !== "undefined" && window.innerWidth > 639) setTimer();
   }, [audio, data]);
 
   // useEffect(() => {

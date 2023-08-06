@@ -13,7 +13,7 @@ const Subtitle = () => {
     <>
       <div
         className="absolute top-12  w-full left-1/2 -translate-x-1/2 
-        z-[70]  flex justify-center items-center xl:top-6"
+        z-[70]  flex justify-center items-center xl:top-6 sm:hidden"
       >
         <AnimatePresence>
           <motion.div
@@ -39,8 +39,12 @@ const Subtitle = () => {
                     francico.className
                   )}
                 >
-                  <span className="absolute inset-0 rounded-lg z-10 bg-primary opacity-70"></span>
-                  <span className="relative z-20 text-lg">{subtitle}</span>
+                  <span
+                    className="relative z-20 text-lg bg-primary tracking-widest p-0.5"
+                    style={{ display: "initial" }}
+                  >
+                    {subtitle}
+                  </span>
                 </motion.div>
               )}
             </AnimatePresence>

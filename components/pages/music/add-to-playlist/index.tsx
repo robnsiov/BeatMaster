@@ -27,7 +27,7 @@ const AddToPlaylist = () => {
         initial={{ opacity: 0, scale: 0.9, fill: "blur(30px)" }}
         animate={next ? "hide" : "show"}
         transition={{ duration: 1, delay: 2 }}
-        className="absolute top-6 right-6 z-[71] flex justify-center items-center text-white"
+        className="absolute top-6 right-8  z-[71] flex justify-center items-center text-white"
       >
         <div className="w-5 h-5 absolute z-10 scale-90">
           <LoadingIcon isFetching={isLoading || isToPlaylistFetching} />
