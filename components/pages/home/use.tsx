@@ -2,7 +2,7 @@ import { queryClient } from "@/components/containers/react-query";
 import { MusicApiImpl } from "@/types/music";
 import request from "@/utils/request";
 import { useQuery } from "@tanstack/react-query";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { notFound, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const useHome = () => {
@@ -21,7 +21,10 @@ const useHome = () => {
 
   useEffect(() => {
     if (musicParam && isError) {
-      router.push("/not-found/404");
+      // isn't any notFond Api for client side
+      // not work error.js or global-error.js
+      // i forced to push page to /not-found
+      router.push("/not-found");
     }
   }, [isError, musicParam]);
 
