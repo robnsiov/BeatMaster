@@ -1,13 +1,10 @@
-import MusicsState from "@/context/musics";
 import MusicsApiImpl from "@/types/music";
 import request from "@/utils/request";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { useSetRecoilState } from "recoil";
 import { UseMusicsImpl } from "./types";
 
 const useMusics = ({ isPlaylist }: UseMusicsImpl) => {
-  const setMusicsState = useSetRecoilState(MusicsState);
   const { isFetching, data } = useQuery({
     queryKey: ["musics", { isPlaylist }],
     queryFn: () =>
@@ -21,12 +18,6 @@ const useMusics = ({ isPlaylist }: UseMusicsImpl) => {
   });
 
   const musics = data?.data;
-
-  useEffect(() => {
-    if (musics) {
-      setMusicsState(musics);
-    }
-  }, [musics]);
 
   return { isFetching, musics };
 };

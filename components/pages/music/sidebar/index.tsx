@@ -1,16 +1,14 @@
 import { useRef } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useDimensions } from "./use";
 import { MenuToggle } from "./menu-toggle";
 import { useEffect } from "react";
-import cls from "classnames";
 import Tabs from "./tabs";
 
 const Sidebar = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { dimensions, isOpen, toggleOpen, variants, musicsLen } =
-    useDimensions();
+  const { dimensions, isOpen, toggleOpen, variants } = useDimensions();
   useEffect(() => {
     if (containerRef.current) {
       dimensions.current.width = containerRef.current.offsetWidth;
@@ -21,7 +19,7 @@ const Sidebar = () => {
   return (
     <motion.nav
       initial={false}
-      animate={!isOpen ? "open" : "closed"}
+      animate={isOpen ? "open" : "closed"}
       custom={dimensions.current.height}
       ref={containerRef}
       className="sidebar absolute inset-0 w-[300px] z-[71]"
@@ -34,14 +32,23 @@ const Sidebar = () => {
         variants={variants}
         className="absolute inset-0 bg-primary opacity-30 460px:opacity-50"
       ></motion.div>
-      <div
-        className={cls(
-          `absolute top-20 460px:top-12 w-full  transition-all duration-200`,
-          !isOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        )}
-      >
-        <Tabs toggleOpen={toggleOpen} />
+      <div className="absolute top-20 inset-x-0 bottom-0 460px:top-12">
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              animate={{ opacity: 1, height: "auto" }}
+              initial={{ opacity: 0, height: 0 }}
+              exit={{ opacity: 0, height: 0 }}
+              className="w-full"
+            >
+              <div className={"w-full"}>
+                <Tabs toggleOpen={toggleOpen} />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
+
       <MenuToggle toggle={toggleOpen} />
     </motion.nav>
   );
