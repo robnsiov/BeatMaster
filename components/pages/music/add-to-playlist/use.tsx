@@ -1,5 +1,5 @@
 import isAuthenticatedState from "@/context/is-authenticated";
-import { MusicApiImpl } from "@/types/music";
+import MusicsApiImpl, { MusicApiImpl } from "@/types/music";
 import request from "@/utils/request";
 import makeToast from "@/utils/request/make-taost";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -8,6 +8,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import showAuthFormState from "@/context/show-auth-form";
 import { UseAddToPlaylistImpl } from "./types";
 import isNextMusicState from "@/context/is-next-music";
+import { queryClient } from "@/components/containers/react-query";
 
 const useAddToPlaylist = () => {
   const isAuthenticated = useRecoilValue(isAuthenticatedState);
@@ -60,6 +61,15 @@ const useAddToPlaylist = () => {
     });
   };
 
+  const { refetch: refetchPlaylist } = useQuery({
+    queryKey: ["musics", { isPlaylist: true }],
+    queryFn: () =>
+      request<MusicsApiImpl>({
+        url: "http://localhost:5000/musics",
+      }),
+    enabled: false,
+  });
+
   const likeMutation = useMutation({
     mutationFn: (data: UseAddToPlaylistImpl) => setLikeAction(data),
     onMutate() {
@@ -75,6 +85,7 @@ const useAddToPlaylist = () => {
         const added = !toPlaylist?.added;
         setToPlaylist({ added });
       }, 2000);
+      refetchPlaylist();
     },
     onError() {
       makeToast({ msg: "an error accured!", type: "error" });
@@ -91,7 +102,7 @@ const useAddToPlaylist = () => {
   };
 
   const changePlaylist = () => {
-    if (isAuthenticated !== "isAuthenticated") isNotAuthenticated();
+    if (isAuthenticated === "isAuthenticated") isNotAuthenticated();
     else {
       const added = !toPlaylist?.added;
       likeMutation.mutate({ added });
