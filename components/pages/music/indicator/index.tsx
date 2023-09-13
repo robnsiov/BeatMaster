@@ -56,7 +56,7 @@ const Progress = ({ artists, cover, musicSrc, musicName }: IndicatorImpl) => {
                       <div className="w-full truncate  pr-2">
                         {artists.map((art, i) => (
                           <div className="inline-block" key={art}>
-                            {art} {i - 1 !== artists.length && <span> x </span>}
+                            {art} {i !== artists.length - 1 && <span> x </span>}
                           </div>
                         ))}
                       </div>

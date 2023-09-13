@@ -43,7 +43,7 @@ const Artist = ({ musicName, artists }: ArtistImpl) => {
                   {artists.map((art, i) => (
                     <div className="inline-block" key={art}>
                       {art}
-                      {i - 1 !== artists.length && (
+                      {i !== artists.length - 1 && (
                         <span className="mx-2">x</span>
                       )}
                     </div>

@@ -21,7 +21,7 @@ const Musics = ({ toggleOpen, isPlaylist = false }: MusicsImpl) => {
     <>
       <motion.ul
         variants={variants}
-        className="m-0 flex justify-center items-center w-full"
+        className="m-0 flex justify-center items-center w-full relative"
       >
         <AnimatePresence>
           {isFetching && (
@@ -29,6 +29,7 @@ const Musics = ({ toggleOpen, isPlaylist = false }: MusicsImpl) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4 }}
+              className="absolute top-4"
             >
               <div className="w-full flex justify-center items-center mt-3 mb-5">
                 <div className="relative">

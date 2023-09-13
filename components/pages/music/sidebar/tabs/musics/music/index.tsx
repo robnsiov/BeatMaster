@@ -75,7 +75,7 @@ const MusicItem = ({
           <div className="w-full truncate text-[12px] pr-2">
             {music.artists.map((art, i) => (
               <div className="inline-block" key={art}>
-                {art} {i - 1 !== music.artists.length && <span> x </span>}
+                {art} {i !== music.artists.length - 1 && <span> x </span>}
               </div>
             ))}
           </div>
