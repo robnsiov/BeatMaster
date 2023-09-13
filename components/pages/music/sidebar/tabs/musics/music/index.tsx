@@ -72,9 +72,13 @@ const MusicItem = ({
                     tracking-widest ml-3  max-w-[160px]"
         >
           <span className="w-full truncate">{music.name}</span>
-          <span className="w-full truncate text-[12px] pr-2">
-            {music.artist}
-          </span>
+          <div className="w-full truncate text-[12px] pr-2">
+            {music.artists.map((art, i) => (
+              <div className="inline-block" key={art}>
+                {art} {i - 1 !== music.artists.length && <span> x </span>}
+              </div>
+            ))}
+          </div>
         </div>
       </Link>
     </motion.li>

@@ -7,16 +7,12 @@ const itemVariants = {
   show: { scale: 1, opacity: 1, filter: "blur(0px)" },
 };
 
-const getDet = (obj: Object, index: number) => {
-  return Object.entries(obj).at(index);
-};
-
 const Detail = ({ details }: DetailImpl) => {
   const { isNextMusic: next } = useDetail();
   return (
     <>
       <div
-        className="uppercase flex justify-start items-start
+        className="flex justify-start items-start
            flex-col text-white text-sm space-y-1 w-[30%] z-50 
             xl:hidden"
       >
@@ -35,14 +31,10 @@ const Detail = ({ details }: DetailImpl) => {
               exit={{ scale: 1.1, filter: "blur(0px)", opacity: 0 }}
               key={"detail"}
             >
-              {details.map((det) => (
-                <div key={`${getDet(det, 0)}`}>
-                  <span className="text-zinc-300 font-thin">
-                    {getDet(det, 0)} :{" "}
-                  </span>{" "}
-                  <h3 className="inline-block font-semibold">
-                    {getDet(det, 1)}
-                  </h3>{" "}
+              {Object.entries(details).map((det) => (
+                <div key={det[0]} className="text-base">
+                  <span className="text-zinc-300 ">{det[0]} : </span>{" "}
+                  <h3 className="inline-block uppercase">{det[1]}</h3>{" "}
                 </div>
               ))}
             </motion.div>

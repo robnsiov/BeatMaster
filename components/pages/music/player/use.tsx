@@ -30,7 +30,6 @@ const usePlayer = (audio: UsePlayerImpl) => {
     enabled: false,
   });
 
-
   const setTimer = () => {
     clearInterval(subtitleInterval);
     setSubtitle("");
@@ -51,13 +50,12 @@ const usePlayer = (audio: UsePlayerImpl) => {
   };
 
   useEffect(() => {
-    
-      if (typeof window !== "undefined" && window.innerWidth > 639) {
-        if (data?.data.slug === "mano-beshnas-2") {
-          data.data.subtitles = subtitles;
-        }
-        setTimer()
+    if (typeof window !== "undefined" && window.innerWidth > 639) {
+      if (data?.data.slug === "d-SJ51W") {
+        data.data.subtitles = subtitles;
       }
+      setTimer();
+    }
   }, [audio, data]);
 
   // useEffect(() => {
@@ -155,10 +153,15 @@ const usePlayer = (audio: UsePlayerImpl) => {
     setIsNextMusic(true);
   };
 
+  const prevIsExist =
+    data?.data.slug === musicsArray?.data.at(0)?.slug ||
+    data?.data.slug === plasylistArray?.data.at(0)?.slug;
+
   const next = () => {
     getNextMusic();
   };
   const prev = () => {
+    if (!prevIsExist) return;
     getPrevMusic();
   };
 
@@ -224,6 +227,7 @@ const usePlayer = (audio: UsePlayerImpl) => {
     decreseVolume,
     pause,
     play,
+    prevIsExist,
   };
 };
 

@@ -4,6 +4,7 @@ import { MusicApiImpl } from "@/types/music";
 import request from "@/utils/request";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import validateColor from "@/utils/validate-color";
 
 const useMusic = () => {
   const [show, setShow] = useState(false);
@@ -21,7 +22,10 @@ const useMusic = () => {
 
   useEffect(() => {
     if (data?.data.color)
-      document.documentElement.style.setProperty("--primary", data?.data.color);
+      document.documentElement.style.setProperty(
+        "--primary",
+        validateColor(data?.data.color)
+      );
   }, [data?.data]);
 
   useEffect(() => {

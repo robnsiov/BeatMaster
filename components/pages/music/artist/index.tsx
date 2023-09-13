@@ -6,7 +6,7 @@ const itemVariants = {
   hide: { scale: 0.9, opacity: 0, filter: "blur(30px)" },
   show: { scale: 1, opacity: 1, filter: "blur(0px)" },
 };
-const Artist = ({ musicName, artist }: ArtistImpl) => {
+const Artist = ({ musicName, artists }: ArtistImpl) => {
   const { isNextMusic: next } = useArtist();
   return (
     <>
@@ -37,12 +37,15 @@ const Artist = ({ musicName, artist }: ArtistImpl) => {
                   {musicName}
                 </h1>
                 <h2
-                  className="uppercase tracking-[10px] w-full 
-            text-left xl:text-center md:text-[13px]"
+                  className="uppercase tracking-[10px] lg:tracking-normal
+            text-left xl:text-center md:text-[13px] max-w-[300px] w-full truncate"
                 >
-                  {artist.map((art, i) => (
+                  {artists.map((art, i) => (
                     <div className="inline-block" key={art}>
-                      {art} {i - 1 === artist.length && <span> - </span>}
+                      {art}
+                      {i - 1 !== artists.length && (
+                        <span className="mx-2">x</span>
+                      )}
                     </div>
                   ))}
                 </h2>

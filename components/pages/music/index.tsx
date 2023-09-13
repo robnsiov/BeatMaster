@@ -28,7 +28,7 @@ const Music = () => {
               cover={music.data.cover}
               musicName={music.data.name}
               musicSrc={music.data.src}
-              artist={music.data.artist}
+              artists={music.data.artists}
             />
             {/* <div className="absolute z-[71] blur-sm bg-primary inset-0 opacity-90  scale-125"></div> */}
             <Sidebar />
@@ -48,7 +48,7 @@ const Music = () => {
         xl:flex-col xl:justify-center"
               >
                 <Artist
-                  artist={music.data.artist}
+                  artists={music.data.artists}
                   musicName={music.data.name}
                 />
                 <Cover src={music.data.cover} />

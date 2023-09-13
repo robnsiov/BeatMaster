@@ -9,7 +9,7 @@ const itemVariants = {
   closed: { width: "70px" },
   translate: { translateY: "100px", filter: "blur(10px)" },
 };
-const Progress = ({ artist, cover, musicSrc, musicName }: IndicatorImpl) => {
+const Progress = ({ artists, cover, musicSrc, musicName }: IndicatorImpl) => {
   const { isNextMusic: next } = useIndicator();
   return (
     <>
@@ -53,7 +53,13 @@ const Progress = ({ artist, cover, musicSrc, musicName }: IndicatorImpl) => {
                     tracking-widest ml-3 md:hidden min-w-[160px] max-w-[160px]"
                     >
                       <span className="w-full truncate">{musicName}</span>
-                      <span className="w-full truncate">{artist}</span>
+                      <div className="w-full truncate  pr-2">
+                        {artists.map((art, i) => (
+                          <div className="inline-block" key={art}>
+                            {art} {i - 1 !== artists.length && <span> x </span>}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                   <div className="max-w-[130px] min-w-[130px] ml-3">

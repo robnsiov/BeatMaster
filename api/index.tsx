@@ -1,7 +1,7 @@
 const api = {
   BASE_URL: "https://music-player.iran.liara.run",
   songs: "/songs/",
-  top: "/songs/mehran-iaJa1/",
+  top: "/top/first/",
   liked: "/liked/",
   signin: "/auth/login/",
   signup: "/auth/signup",

@@ -14,6 +14,7 @@ import { MusicApiImpl } from "@/types/music";
 import makeToast from "@/utils/request/make-taost";
 import request from "@/utils/request";
 import api from "@/api";
+import validateColor from "@/utils/validate-color";
 
 const useAuth = () => {
   const [formType, setFormType] = useState<FormTypeImpl>("Sing in");
@@ -29,7 +30,7 @@ const useAuth = () => {
   });
 
   const colors = useCallback(() => {
-    const primaryColor = data?.data.color;
+    const primaryColor = validateColor(data?.data.color);
 
     return {
       formBackground: color(primaryColor).alpha(0.5) as any,
