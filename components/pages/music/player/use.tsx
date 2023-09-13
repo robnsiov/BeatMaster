@@ -9,6 +9,7 @@ import subtitleState from "@/context/subtitle";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDidUpdate } from "@mantine/hooks";
 import { queryClient } from "@/components/containers/react-query";
+import subtitles from "./subtitles";
 
 const usePlayer = (audio: UsePlayerImpl) => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const usePlayer = (audio: UsePlayerImpl) => {
     queryFn: () => ({} as { data: MusicApiImpl } | undefined),
     enabled: false,
   });
+
 
   const setTimer = () => {
     clearInterval(subtitleInterval);
@@ -49,7 +51,13 @@ const usePlayer = (audio: UsePlayerImpl) => {
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.innerWidth > 639) setTimer();
+    
+      if (typeof window !== "undefined" && window.innerWidth > 639) {
+        if (data?.data.slug === "mano-beshnas-2") {
+          data.data.subtitles = subtitles;
+        }
+        setTimer()
+      }
   }, [audio, data]);
 
   // useEffect(() => {

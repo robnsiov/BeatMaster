@@ -24,7 +24,7 @@ const Subtitle = () => {
               opacity: next ? 1 : 0,
             }}
             animate={next ? "closed" : "open"}
-            className="w-[35%] xl:w-[400px] sm:w-[60%] 460px:w-[80%] text-center"
+            className="w-[400px] sm:w-[60%] 460px:w-[80%] text-center"
             transition={{ duration: 1, delay: next ? 0.4 : 3 }}
           >
             <AnimatePresence>

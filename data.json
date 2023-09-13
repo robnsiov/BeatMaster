@@ -3,19 +3,19 @@
     "added": true
   },
   "active": {
-    "cover": "/images/Amir Tataloo - Asheghi Nagaeidam.jpg",
-    "src": "https://dl.musicguitars.ir/Music/Amir%20Tataloo/128/Amir%20Tataloo%20-%20Asheghi%20Nagaeidam%20[128].mp3",
-    "slug": "asheghi-nagaeidam-1",
-    "artist": "Amir Tataloo",
-    "name": "Asheghi Nagaeidam",
+    "cover": "/images/sorena.jpg",
+    "src": "/musics/mano.mp3",
+    "slug": "mano-beshnas-2",
+    "artist": "Ali Sorena",
+    "name": "Mano Beshnas",
     "details": [
       [
         "LIRICS & MELODY",
-        "AMIR TATALOO"
+        "Ali Sorena"
       ],
       [
         "Mix & Master",
-        "SOHEIL KHODABANDEH"
+        "Farzam"
       ],
       [
         "Cover Art",
@@ -26,60 +26,33 @@
         "ARMAN SHAMS"
       ]
     ],
-    "color": "#0C254D",
-    "subtitles": [
-      {
-        "start": 1,
-        "end": 7,
-        "subtitle": "سلام چطوری؟ سلام چطوری؟ سلام چطوری؟ سلام چطوری؟ سلام چطوری؟ سلام چطوری؟"
-      },
-      {
-        "start": 7,
-        "end": 10,
-        "subtitle": "حالت خوبه؟ سلام چطوری؟ سلام چطوری؟ سلام چطوری؟ سلام چطوری؟ سلام چطوری؟ سلام چطوری؟ سلام چطوری؟"
-      },
-      {
-        "start": 10.1,
-        "end": 14,
-        "subtitle": "این یک تست از زیر نویس است این یک تست از زیر نویس است این یک تست از زیر نویس است این یک تست از زیر نویس است"
-      },
-      {
-        "start": 16,
-        "end": 18,
-        "subtitle": "این دو تست از زیر نویس است این دو تست از زیر نویس است این دو تست از زیر نویس است این دو تست از زیر نویس است این دو تست از زیر نویس است"
-      },
-      {
-        "start": 18,
-        "end": 2009,
-        "subtitle": "این سه تست از بالا نویس است این سه تست از بالا نویس است این سه تست از بالا نویس است این سه تست از بالا نویس است"
-      }
-    ]
+    "color": "#454545"
   },
   "next": {
-    "cover": "/images/sarbar-amir-tataloo.jpg",
-    "src": "https://dl.musicguitars.ir/Music/Amir%20Tataloo/128/Amir%20Tataloo%20-%20Sarbar%20[128].mp3",
-    "slug": "sarbar-2",
-    "artist": "Amir Tataloo",
-    "name": "Sarbar",
+    "cover": "/images/sorena.jpg",
+    "src": "/musics/mano.mp3",
+    "slug": "mano-beshnas-2",
+    "artist": "Ali Sorena",
+    "name": "Mano Beshnas",
     "details": [
       [
         "LIRICS & MELODY",
-        "AMIR TATALOO"
+        "Ali Sorena"
       ],
       [
         "Mix & Master",
-        "Mehdi Moazam"
+        "Farzam"
       ],
       [
         "Cover Art",
-        "Kasra Khadivar"
+        "DAMIRCHI"
       ],
       [
         "3D Artist",
-        "Damirchi"
+        "ARMAN SHAMS"
       ]
     ],
-    "color": "#085258"
+    "color": "#454545"
   },
   "prev": {
     "cover": "/images/Amir Tataloo - Asheghi Nagaeidam.jpg",
@@ -109,31 +82,30 @@
   },
   "musics": [
     {
-      "cover": "/images/Amir Tataloo - Asheghi Nagaeidam.jpg",
-      "src": "https://dl.musicguitars.ir/Music/Amir%20Tataloo/128/Amir%20Tataloo%20-%20Asheghi%20Nagaeidam%20[128].mp3",
-      "slug": "asheghi-nagaeidam-1",
-      "id": "asheghi-nagaeidam-1",
-      "artist": "Amir Tataloo",
-      "name": "Asheghi Nagaeidam",
-      "details": [
-        [
-          "LIRICS & MELODY",
-          "AMIR TATALOO"
-        ],
-        [
-          "Mix & Master",
-          "SOHEIL KHODABANDEH"
-        ],
-        [
-          "Cover Art",
-          "DAMIRCHI"
-        ],
-        [
-          "3D Artist",
-          "ARMAN SHAMS"
-        ]
+      "cover": "/images/sorena.jpg",
+    "src": "/musics/mano.mp3",
+    "slug": "mano-beshnas-2",
+    "artist": "Ali Sorena",
+    "name": "Mano Beshnas",
+    "details": [
+      [
+        "LIRICS & MELODY",
+        "Ali Sorena"
       ],
-      "color": "#0C254D"
+      [
+        "Mix & Master",
+        "Farzam"
+      ],
+      [
+        "Cover Art",
+        "DAMIRCHI"
+      ],
+      [
+        "3D Artist",
+        "ARMAN SHAMS"
+      ]
+    ],
+    "color": "#454545"
     },
     {
       "cover": "/images/sarbar-amir-tataloo.jpg",

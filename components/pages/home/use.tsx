@@ -1,4 +1,5 @@
 import { queryClient } from "@/components/containers/react-query";
+import api from "@/api";
 import { MusicApiImpl } from "@/types/music";
 import request from "@/utils/request";
 import { useQuery } from "@tanstack/react-query";
@@ -11,12 +12,13 @@ const useHome = () => {
   const searchParams = useSearchParams();
   const musicParam = searchParams.get("name");
   const playlistParam = searchParams.get("playlist");
-  const url = musicParam
-    ? `http://localhost:5000/musics/${musicParam}`
-    : "http://localhost:5000/active";
+  const url = musicParam ? `${api.songs}${musicParam}/` : api.top;
   const { isSuccess, data, isFetching, isError, refetch } = useQuery({
     queryKey: ["music"],
-    queryFn: () => request<MusicApiImpl>({ url: url }),
+    queryFn: () =>
+      request<MusicApiImpl>({
+        url,
+      }),
   });
 
   useEffect(() => {

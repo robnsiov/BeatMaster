@@ -54,7 +54,7 @@ const Player = ({ url }: { url: string }) => {
           autoPlay
           loop={false}
           onEnded={next}
-          volume={0}
+          // volume={0}
           ref={playerRef}
           onPause={() => setIsPlayed(false)}
           onPlay={() => setIsPlayed(true)}

@@ -1,4 +1,4 @@
 export default interface ArtistImpl {
   musicName: string;
-  artist: string;
+  artist: Array<string>;
 }

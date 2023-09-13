@@ -9,6 +9,7 @@ import showAuthFormState from "@/context/show-auth-form";
 import { UseAddToPlaylistImpl } from "./types";
 import isNextMusicState from "@/context/is-next-music";
 import { queryClient } from "@/components/containers/react-query";
+import api from "@/api";
 
 const useAddToPlaylist = () => {
   const isAuthenticated = useRecoilValue(isAuthenticatedState);
@@ -55,8 +56,7 @@ const useAddToPlaylist = () => {
 
   const setLikeAction = (data: UseAddToPlaylistImpl) => {
     return request<UseAddToPlaylistImpl>({
-      method: "POST",
-      url: "http://localhost:5000/user-action",
+      url: `${api.songs}${music?.data.slug}${api.liked}`,
       data,
     });
   };
@@ -65,7 +65,7 @@ const useAddToPlaylist = () => {
     queryKey: ["musics", { isPlaylist: true }],
     queryFn: () =>
       request<MusicsApiImpl>({
-        url: "http://localhost:5000/musics",
+        url: api.songs,
       }),
     enabled: false,
   });

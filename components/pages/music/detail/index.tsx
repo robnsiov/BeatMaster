@@ -7,6 +7,10 @@ const itemVariants = {
   show: { scale: 1, opacity: 1, filter: "blur(0px)" },
 };
 
+const getDet = (obj: Object, index: number) => {
+  return Object.entries(obj).at(index);
+};
+
 const Detail = ({ details }: DetailImpl) => {
   const { isNextMusic: next } = useDetail();
   return (
@@ -32,11 +36,13 @@ const Detail = ({ details }: DetailImpl) => {
               key={"detail"}
             >
               {details.map((det) => (
-                <div key={det.join("")}>
+                <div key={`${getDet(det, 0)}`}>
                   <span className="text-zinc-300 font-thin">
-                    {det.at(0)} :{" "}
+                    {getDet(det, 0)} :{" "}
                   </span>{" "}
-                  <h3 className="inline-block font-semibold">{det.at(1)}</h3>{" "}
+                  <h3 className="inline-block font-semibold">
+                    {getDet(det, 1)}
+                  </h3>{" "}
                 </div>
               ))}
             </motion.div>

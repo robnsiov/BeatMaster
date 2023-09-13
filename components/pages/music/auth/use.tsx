@@ -12,6 +12,8 @@ import showAuthFormState from "@/context/show-auth-form";
 import isAuthenticatedState from "@/context/is-authenticated";
 import { MusicApiImpl } from "@/types/music";
 import makeToast from "@/utils/request/make-taost";
+import request from "@/utils/request";
+import api from "@/api";
 
 const useAuth = () => {
   const [formType, setFormType] = useState<FormTypeImpl>("Sing in");
@@ -41,6 +43,7 @@ const useAuth = () => {
   const validation = zod.object({
     email: zod.string().email(),
     password: zod.string().min(8).max(64),
+    username: zod.string().min(4).max(64).optional(),
   });
 
   const {
@@ -50,8 +53,12 @@ const useAuth = () => {
   } = useForm<InputsImpl>({ resolver: zodResolver(validation) });
 
   const qyeryFunc = (data: InputsImpl) => {
-    const url = formType === "Sign up" ? "/signup" : "/signin";
-    return axios(url);
+    const url = formType === "Sign up" ? api.signup : api.signin;
+    let body = {};
+    if (formType === "Sign up") {
+      body = { ...data, password1: data.password, password2: data.password };
+    } else body = data;
+    return request({ url, method: "POST", data: body });
   };
 
   const mutation = useMutation({

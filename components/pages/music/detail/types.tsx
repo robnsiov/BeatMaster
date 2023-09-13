@@ -1,3 +1,3 @@
 export default interface DetailImpl {
-  details: Array<[string, string]>;
+  details: Array<{ [key: string]: string }>;
 }

@@ -40,7 +40,11 @@ const Artist = ({ musicName, artist }: ArtistImpl) => {
                   className="uppercase tracking-[10px] w-full 
             text-left xl:text-center md:text-[13px]"
                 >
-                  {artist}
+                  {artist.map((art, i) => (
+                    <div className="inline-block" key={art}>
+                      {art} {i - 1 === artist.length && <span> - </span>}
+                    </div>
+                  ))}
                 </h2>
               </div>
             </motion.div>

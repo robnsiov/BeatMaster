@@ -35,6 +35,29 @@ const Auth = () => {
             className="w-full flex justify-center items-center flex-col"
             autoComplete="off"
           >
+            {formType === "Sign up" && (
+              <label className="w-full mb-1.5 cursor-pointer">
+                <span className="text-white text-sm mb-1">Username</span>
+                <input
+                  spellCheck={false}
+                  {...register("username")}
+                  className={cls(
+                    `w-full 
+            p-2 outline-none duration-200 transition-all
+            text-zinc-300 border-2 focus:!border-primary`,
+                    {
+                      "outline-2 outline-offset-[-2px] outline-red-500":
+                        errors.username,
+                    }
+                  )}
+                  style={{
+                    background: colors.inputBackground,
+                    borderColor: colors.inputBorder,
+                  }}
+                />
+              </label>
+            )}
+
             <label className="w-full mb-1.5 cursor-pointer">
               <span className="text-white text-sm mb-1">Email</span>
               <input

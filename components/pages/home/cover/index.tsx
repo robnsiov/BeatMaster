@@ -10,7 +10,7 @@ const Cover = ({ src }: CoverImpl) => {
           width="2000"
           height="2000"
           alt="cover"
-          className="w-full h-full object-cover object-top"
+          className="w-full h-full object-cover object-center"
         />
       </div>
     </>
