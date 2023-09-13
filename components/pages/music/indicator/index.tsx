@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Player from "../player";
 import { AnimatePresence, motion } from "framer-motion";
 import useIndicator from "./use";
 import IndicatorImpl from "./types";
+import Image from "@/components/shared/image";
 
 const itemVariants = {
   open: { scale: 1, filter: "blur(0px)", opacity: 1 },
@@ -41,8 +41,8 @@ const Progress = ({ artists, cover, musicSrc, musicName }: IndicatorImpl) => {
                     <div className="min-w-[55px] max-w-[55px] aspect-square">
                       <Image
                         src={cover}
-                        width="100"
-                        height="100"
+                        width={100}
+                        height={100}
                         alt="cover"
                         className="w-full h-full object-cover rounded-lg"
                       />

@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import Image from "next/image";
 import MusicItemImpl from "./types";
 import Link from "next/link";
 import { queryClient } from "@/components/containers/react-query";
 import cls from "classnames";
 import useMusicItem from "./use";
 import PlayingAnim from "./playing-anim";
+import Image from "@/components/shared/image";
 
 const variants = {
   open: {
@@ -60,8 +60,8 @@ const MusicItem = ({
         <div className="min-w-[55px] max-w-[55px] aspect-square">
           <Image
             src={music.cover}
-            width="100"
-            height="100"
+            width={100}
+            height={100}
             alt="cover"
             className="w-full h-full object-cover rounded-lg"
           />

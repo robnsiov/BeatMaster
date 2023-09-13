@@ -1,9 +1,9 @@
-import Image from "next/image";
 import VerticalShadow from "../shadows/vertical";
 import { AnimatePresence, motion } from "framer-motion";
 import useCover from "./use";
 import CoverImpl from "./types";
 import cls from "classnames";
+import Image from "@/components/shared/image";
 
 const itemVariants = {
   translate: { translateY: "-150%", filter: "blur(30px)" },
@@ -48,8 +48,8 @@ const Cover = ({ src }: CoverImpl) => {
             >
               <Image
                 src={src}
-                width="600"
-                height="600"
+                width={600}
+                height={600}
                 alt="cover"
                 className={cls(
                   `w-full h-full object-cover rounded-[35px] relative heart`,
