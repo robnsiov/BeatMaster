@@ -31,7 +31,7 @@ const Artist = ({ musicName, artists }: ArtistImpl) => {
             >
               <div className="flex justify-start items-start flex-col">
                 <h1
-                  className="uppercase text-6xl font-medium mb-1 
+                  className="uppercase text-4xl font-medium mb-1 
             whitespace-nowrap lg:whitespace-normal lg:text-center w-full md:w-full md:text-xl"
                 >
                   {musicName}
