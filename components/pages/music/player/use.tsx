@@ -30,6 +30,11 @@ const usePlayer = (audio: UsePlayerImpl) => {
     enabled: false,
   });
 
+  useEffect(() => {
+    document.title = `Farzam- ${data?.data.name}`;
+    console.log(1);
+  }, [data?.data.name]);
+
   const setTimer = () => {
     clearInterval(subtitleInterval);
     setSubtitle("");

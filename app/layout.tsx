@@ -15,6 +15,13 @@ export const francico = localFont({
   display: "swap",
 });
 
+export const metadata = {
+  title: {
+    template: "Farzam-Remix - %s",
+    default: "Farzam-Remix",
+  },
+};
+
 export default function RootLayout({
   children,
 }: {
