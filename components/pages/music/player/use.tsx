@@ -153,7 +153,7 @@ const usePlayer = (audio: UsePlayerImpl) => {
     setIsNextMusic(true);
   };
 
-  const prevIsExist =
+  const prevIsNotExist =
     data?.data.slug === musicsArray?.data.at(0)?.slug ||
     data?.data.slug === plasylistArray?.data.at(0)?.slug;
 
@@ -161,7 +161,7 @@ const usePlayer = (audio: UsePlayerImpl) => {
     getNextMusic();
   };
   const prev = () => {
-    if (!prevIsExist) return;
+    if (prevIsNotExist) return;
     getPrevMusic();
   };
 
@@ -227,7 +227,7 @@ const usePlayer = (audio: UsePlayerImpl) => {
     decreseVolume,
     pause,
     play,
-    prevIsExist,
+    prevIsNotExist,
   };
 };
 

@@ -13,7 +13,7 @@ const Player = ({ url }: { url: string }) => {
   // @ts-ignore
   const audio: HTMLAudioElement = playerRef.current?.audio?.current;
 
-  const { next, prev, isPlayed, setIsPlayed, pause, play, prevIsExist } =
+  const { next, prev, isPlayed, setIsPlayed, pause, play, prevIsNotExist } =
     usePlayer(audio);
 
   return (
@@ -27,7 +27,7 @@ const Player = ({ url }: { url: string }) => {
             className={cls(
               `active:scale-90 
             transition-all duration-200 cursor-pointer`,
-              { "!cursor-not-allowed opacity-30": !prevIsExist }
+              { "!cursor-not-allowed opacity-30": prevIsNotExist }
             )}
             size="20"
             onClick={prev}

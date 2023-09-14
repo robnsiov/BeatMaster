@@ -31,20 +31,20 @@ const Artist = ({ musicName, artists }: ArtistImpl) => {
             >
               <div className="flex justify-start items-start flex-col">
                 <h1
-                  className="uppercase text-3xl font-medium mb-1 
+                  className="uppercase text-6xl font-medium mb-1 
             whitespace-nowrap lg:whitespace-normal lg:text-center w-full md:w-full md:text-xl"
                 >
                   {musicName}
                 </h1>
                 <h2
-                  className="uppercase tracking-[10px] lg:tracking-normal
-            text-left xl:text-center md:text-[13px] max-w-[300px] w-full truncate"
+                  className="uppercase tracking-[10px] lg:tracking-normal text-sm mt-2
+            text-left xl:text-center md:text-[13px] max-w-[300px] w-full"
                 >
                   {artists.map((art, i) => (
                     <div className="inline-block" key={art}>
                       {art}
                       {i !== artists.length - 1 && (
-                        <span className="mx-2">x</span>
+                        <span className="mx-2 text-[10px]">x</span>
                       )}
                     </div>
                   ))}

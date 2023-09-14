@@ -39,7 +39,7 @@ const MusicItem = ({
       className={cls(
         `w-full mb-3 flex items-center cursor-pointer p-1 relative 
       rounded-md duration-200 transition-all`,
-        { "border-2 border-primary": musicNameParam === music.slug }
+        { "border-2 border-zinc-400": musicNameParam === music.slug }
       )}
     >
       <div className="absolute inset-0 rounded-md bg-primary opacity-70"></div>
