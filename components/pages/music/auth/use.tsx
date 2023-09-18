@@ -59,7 +59,7 @@ const useAuth = () => {
     if (formType === "Sign up") {
       body = { ...data, password1: data.password, password2: data.password };
     } else body = data;
-    return request({ url, method: "POST", data: body });
+    return request<{ access: string }>({ url, method: "POST", data: body });
   };
 
   const mutation = useMutation({
@@ -70,18 +70,24 @@ const useAuth = () => {
     onSettled() {
       setIsLoading(false);
     },
-    onSuccess() {
+    onSuccess(res) {
+      const token = res.data.access;
+      if (token) {
+        localStorage.setItem("token", token);
+      }
       makeToast({ msg: "successfully", type: "success" });
       setShowAuthForm(false);
       setIsAuthenticated("isAuthenticated");
       // set token on cookie or localstorage
     },
-    onError() {
+    onError(error: any) {
       // duplicate email
-      // makeToast({ msg: "duplicate email", type: "error" });
-
+      if (error.email) makeToast({ msg: "duplicate email", type: "error" });
+      else if (error.password) makeToast({ msg: "weak email", type: "error" });
+      else if (error.username)
+        makeToast({ msg: "duplicate username", type: "error" });
       // server error
-      makeToast({ msg: "server error", type: "error" });
+      else makeToast({ msg: "server error", type: "error" });
     },
   });
 

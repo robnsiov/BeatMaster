@@ -27,8 +27,7 @@ const useAddToPlaylist = () => {
   const getUserAction = () => {
     return request<UseAddToPlaylistImpl>({
       method: "GET",
-      url: "http://localhost:5000/user-action",
-      // url: "http://localhost:5000/user-action/" + music.data.slug,
+      url: api.isLiked(music?.data.slug ?? ""),
     });
   };
 
@@ -39,7 +38,6 @@ const useAddToPlaylist = () => {
   } = useQuery({
     queryKey: ["to-playlist"],
     queryFn: getUserAction,
-    enabled: false,
   });
 
   const addedToPlaylistData = toPlaylistApi?.data;
@@ -93,16 +91,16 @@ const useAddToPlaylist = () => {
   });
 
   const isNotAuthenticated = () => {
-    makeToast({
-      msg: "you are'nt authenticated!",
-      type: "error",
-      options: { duration: 2000 },
-    });
+    // makeToast({
+    //   msg: "you are'nt authenticated!",
+    //   type: "error",
+    //   options: { duration: 2000 },
+    // });
     setShowAuthForm(true);
   };
 
   const changePlaylist = () => {
-    if (isAuthenticated === "isAuthenticated") isNotAuthenticated();
+    if (isAuthenticated === "notAuthenticated") isNotAuthenticated();
     else {
       const added = !toPlaylist?.added;
       likeMutation.mutate({ added });
@@ -114,6 +112,7 @@ const useAddToPlaylist = () => {
     isLoading,
     isToPlaylistFetching,
     isNextMusic,
+    isAuthenticated,
   };
 };
 export default useAddToPlaylist;

@@ -4,7 +4,9 @@ const api = {
   top: "/top/first/",
   liked: "/liked/",
   signin: "/auth/login/",
-  signup: "/auth/signup",
+  signup: "/auth/signup/",
+  isAuth: "/auth/is_authenticated/",
+  isLiked: (slug: string) => `/songs/${slug}/like/`,
 };
 
 export default api;

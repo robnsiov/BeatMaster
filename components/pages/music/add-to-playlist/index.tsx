@@ -17,6 +17,7 @@ const AddToPlaylist = () => {
     changePlaylist,
     isLoading,
     isToPlaylistFetching,
+    isAuthenticated,
     isNextMusic: next,
   } = useAddToPlaylist();
 
@@ -30,7 +31,12 @@ const AddToPlaylist = () => {
         className="absolute top-6 right-8  z-[71] flex justify-center items-center text-white"
       >
         <div className="w-5 h-5 absolute z-10 scale-90">
-          <LoadingIcon isFetching={isLoading || isToPlaylistFetching} />
+          <LoadingIcon
+            isFetching={
+              (isLoading || isToPlaylistFetching) &&
+              isAuthenticated === "isAuthenticated"
+            }
+          />
         </div>
         <div className="w-5 h-5">
           <AnimatePresence>

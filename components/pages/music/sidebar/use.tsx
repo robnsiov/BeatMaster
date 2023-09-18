@@ -1,7 +1,10 @@
 import { useCycle } from "framer-motion";
 import { useRef } from "react";
 import { useViewportSize } from "@mantine/hooks";
+import isNextMusicState from "@/context/is-next-music";
+import { useRecoilValue } from "recoil";
 export const useDimensions = () => {
+  const isNextMusic = useRecoilValue(isNextMusicState);
   const { width } = useViewportSize();
   const dimensions = useRef({ width: 0, height: 0 });
   const [isOpen, toggleOpenCycle] = useCycle(false, true);
@@ -27,5 +30,5 @@ export const useDimensions = () => {
       },
     },
   };
-  return { dimensions, isOpen, toggleOpen, variants, width };
+  return { dimensions, isOpen, toggleOpen, variants, width, isNextMusic };
 };

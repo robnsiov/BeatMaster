@@ -32,7 +32,6 @@ const usePlayer = (audio: UsePlayerImpl) => {
 
   useEffect(() => {
     document.title = `Farzam- ${data?.data.name}`;
-    console.log(1);
   }, [data?.data.name]);
 
   const setTimer = () => {

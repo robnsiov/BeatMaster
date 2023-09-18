@@ -5,6 +5,8 @@ import request from "@/utils/request";
 import { useQuery } from "@tanstack/react-query";
 import { notFound, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useSetRecoilState } from "recoil";
+import isAuthenticatedState from "@/context/is-authenticated";
 
 const useHome = () => {
   const router = useRouter();
@@ -12,6 +14,7 @@ const useHome = () => {
   const searchParams = useSearchParams();
   const musicParam = searchParams.get("name");
   const playlistParam = searchParams.get("playlist");
+  const setAuthStatus = useSetRecoilState(isAuthenticatedState);
   const url = musicParam ? `${api.songs}${musicParam}/` : api.top;
   const { isSuccess, data, isFetching, isError, refetch } = useQuery({
     queryKey: ["music"],
@@ -41,6 +44,22 @@ const useHome = () => {
       }, 300);
     }
   };
+
+  const { data: isAuth, error: isNotAuth } = useQuery({
+    queryKey: ["is-auth"],
+    queryFn: () =>
+      request({
+        url: api.isAuth,
+      }),
+  });
+
+  useEffect(() => {
+    if (isAuth) setAuthStatus("isAuthenticated");
+    else if (isNotAuth) {
+      setAuthStatus("notAuthenticated");
+      localStorage.removeItem("token");
+    }
+  }, [isAuth, isNotAuth]);
 
   return { goToMusicPage, hide, isFetching, isSuccess, isError, refetch, data };
 };
