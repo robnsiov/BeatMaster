@@ -1,3 +1,4 @@
+"use client";
 import RootContainer from "@/components/containers/root";
 import "./globals.css";
 import type { Metadata } from "next";
