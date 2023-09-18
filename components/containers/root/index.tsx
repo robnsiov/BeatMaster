@@ -1,3 +1,4 @@
+"use client";
 import Home from "@/components/pages/home";
 import ReactQueryContainer from "../react-query";
 import RecoliContainer from "../recoil";
