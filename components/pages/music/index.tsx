@@ -18,7 +18,7 @@ const Music = () => {
   const { music, show } = useMusic();
   return (
     <>
-      <div className="w-full h-screen bg-black flex justify-center items-center relative overflow-hidden">
+      <div className="w-full min-h-screen bg-black flex justify-center items-center relative overflow-hidden">
         {show && music?.data && (
           <>
             <Progress

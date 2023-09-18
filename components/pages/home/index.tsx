@@ -23,7 +23,7 @@ const Home = () => {
     <>
       <div
         className={cls(
-          `w-full h-screen overflow-hidden absolute
+          `w-full min-h-screen overflow-hidden fixed
            inset-0 z-[100] duration-700 transition-all`,
           hide
             ? "opacity-0 invisible scale-125"

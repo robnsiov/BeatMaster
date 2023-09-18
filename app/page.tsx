@@ -1,7 +1,7 @@
 const Page = () => {
   return (
     <>
-      <div className="w-full h-screen bg-black"></div>
+      <div className="w-full min-h-screen bg-black"></div>
     </>
   );
 };
