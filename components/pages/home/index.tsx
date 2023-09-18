@@ -19,7 +19,6 @@ const Home = () => {
     imageLoaded,
     setImageLoaded,
   } = useHome();
-  console.log(imageLoaded);
   return (
     <>
       <div

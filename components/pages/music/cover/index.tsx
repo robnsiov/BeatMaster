@@ -14,7 +14,7 @@ const itemVariants = {
 };
 
 const Cover = ({ src }: CoverImpl) => {
-  const { isNextMusic: next, isPlayed } = useCover();
+  const { isNextMusic: next, isPlayed, init } = useCover(src);
   const previousValue = usePrevious(src);
   return (
     <>
@@ -55,29 +55,45 @@ const Cover = ({ src }: CoverImpl) => {
                   isPlayed ? "run-anim" : "pause-anim"
                 )}
               >
-                <span className="w-full absolute inset-0 scale-75 bg-primary rounded-[35px]"></span>
-                <div
-                  className={cls(
-                    `w-full  transition-all duration-[0.05s]`,
-                    src === previousValue
-                      ? "opacity-100 scale-100"
-                      : "opacity-0 scale-90"
-                  )}
-                >
-                  {src === previousValue && (
-                    <Image
-                      src={src}
-                      width={600}
-                      height={600}
-                      alt="cover"
-                      showLoading={false}
+                {init ? (
+                  <Image
+                    src={src}
+                    width={600}
+                    height={600}
+                    alt="cover"
+                    showLoading={false}
+                    className={cls(
+                      `w-full h-full object-cover rounded-[35px] relative heart`,
+                      isPlayed ? "run-anim" : "pause-anim"
+                    )}
+                  />
+                ) : (
+                  <>
+                    <span className="w-full absolute inset-0 scale-75 bg-primary rounded-[35px]"></span>
+                    <div
                       className={cls(
-                        `w-full h-full object-cover rounded-[35px] relative heart`,
-                        isPlayed ? "run-anim" : "pause-anim"
+                        `w-full  transition-all duration-[0.05s]`,
+                        src === previousValue
+                          ? "opacity-100 scale-100"
+                          : "opacity-0 scale-90"
                       )}
-                    />
-                  )}
-                </div>
+                    >
+                      {src === previousValue && (
+                        <Image
+                          src={src}
+                          width={600}
+                          height={600}
+                          alt="cover"
+                          showLoading={false}
+                          className={cls(
+                            `w-full h-full object-cover rounded-[35px] relative heart`,
+                            isPlayed ? "run-anim" : "pause-anim"
+                          )}
+                        />
+                      )}
+                    </div>
+                  </>
+                )}
               </div>
             </motion.div>
           </motion.div>
