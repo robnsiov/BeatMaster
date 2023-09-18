@@ -1,4 +1,4 @@
-import RootContainer from "@/components/containers/root";
+// import RootContainer from "@/components/containers/root";
 import "./globals.css";
 import { Poppins } from "next/font/google";
 import localFont from "next/font/local";
@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`overflow-hidden ${poppins.className}`}>
-        <RootContainer>{children}</RootContainer>
+        {/* <RootContainer>{children}</RootContainer> */}
       </body>
     </html>
   );
