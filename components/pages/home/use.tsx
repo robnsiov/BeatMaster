@@ -46,21 +46,21 @@ const useHome = () => {
     }
   };
 
-  const { data: isAuth, error: isNotAuth } = useQuery({
-    queryKey: ["is-auth"],
-    queryFn: () =>
-      request({
-        url: api.isAuth,
-      }),
-  });
+  // const { data: isAuth, error: isNotAuth } = useQuery({
+  //   queryKey: ["is-auth"],
+  //   queryFn: () =>
+  //     request({
+  //       url: api.isAuth,
+  //     }),
+  // });
 
-  useEffect(() => {
-    if (isAuth) setAuthStatus("isAuthenticated");
-    else if (isNotAuth) {
-      setAuthStatus("notAuthenticated");
-      localStorage.removeItem("token");
-    }
-  }, [isAuth, isNotAuth]);
+  // useEffect(() => {
+  //   if (isAuth) setAuthStatus("isAuthenticated");
+  //   else if (isNotAuth) {
+  //     setAuthStatus("notAuthenticated");
+  //     localStorage.removeItem("token");
+  //   }
+  // }, [isAuth, isNotAuth]);
 
   return {
     goToMusicPage,
