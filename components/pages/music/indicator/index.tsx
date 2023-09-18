@@ -18,7 +18,7 @@ const Progress = ({ artists, cover, musicSrc, musicName }: IndicatorImpl) => {
     <>
       <div
         className="absolute bottom-4 left-1/2 -translate-x-1/2
-        z-[60] xl:bottom-3 460px:bottom-10 380px:bottom-20 flex justify-center items-center"
+        z-[60] xl:bottom-3 460px:bottom-10 !380px:bottom-20 flex justify-center items-center"
       >
         <motion.div
           variants={itemVariants}
