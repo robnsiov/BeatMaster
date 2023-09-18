@@ -11,6 +11,7 @@ import isAuthenticatedState from "@/context/is-authenticated";
 const useHome = () => {
   const router = useRouter();
   const [hide, setHide] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const searchParams = useSearchParams();
   const musicParam = searchParams.get("name");
   const playlistParam = searchParams.get("playlist");
@@ -61,6 +62,16 @@ const useHome = () => {
     }
   }, [isAuth, isNotAuth]);
 
-  return { goToMusicPage, hide, isFetching, isSuccess, isError, refetch, data };
+  return {
+    goToMusicPage,
+    hide,
+    isFetching,
+    isSuccess,
+    isError,
+    refetch,
+    data,
+    imageLoaded,
+    setImageLoaded,
+  };
 };
 export default useHome;

@@ -12,13 +12,10 @@ import Loading from "./loading";
 import Subtitle from "./subtitle";
 import Sidebar from "./sidebar";
 import Auth from "./auth";
-import { useRecoilState } from "recoil";
-import showAuthFormState from "@/context/show-auth-form";
 import AddToPlaylist from "./add-to-playlist";
 
 const Music = () => {
   const { music, show } = useMusic();
-  const [, setD] = useRecoilState(showAuthFormState);
   return (
     <>
       <div className="w-full h-screen bg-black flex justify-center items-center relative overflow-hidden">
@@ -32,7 +29,7 @@ const Music = () => {
             />
             {/* <div className="absolute z-[71] blur-sm bg-primary inset-0 opacity-90  scale-125"></div> */}
             <Sidebar />
-            <AddToPlaylist />
+            {/* <AddToPlaylist /> */}
             <Subtitle />
             <Loading />
             <Auth />

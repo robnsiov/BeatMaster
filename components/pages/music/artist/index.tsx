@@ -25,7 +25,7 @@ const Artist = ({ musicName, artists }: ArtistImpl) => {
             <motion.div
               initial={{ scale: 1.1, filter: "blur(30px)", opacity: 0 }}
               animate={{ scale: 1, filter: "blur(0px)", opacity: 1 }}
-              transition={{ duration: 1, delay: 1.5 }}
+              transition={{ duration: 1, delay: 2.5 }}
               exit={{ scale: 1.1, filter: "blur(0px)", opacity: 0 }}
               key={"artist"}
             >

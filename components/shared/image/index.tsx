@@ -15,8 +15,9 @@ const Image = ({
   width,
   alt,
   showLoading = true,
+  loaded = () => {},
 }: ImageImpl) => {
-  const { error, loading, endLoading, activationError } = useImage();
+  const { error, loading, endLoading, activationError } = useImage(loaded);
   return (
     <>
       <div className="w-full h-full flex justify-center items-center relative">

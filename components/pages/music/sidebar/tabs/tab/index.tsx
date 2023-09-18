@@ -13,7 +13,7 @@ const Tab = ({
       <div
         onClick={onClick}
         className={cls(
-          `w-1/2 border-b-[1px]
+          `w-f border-b-[1px]
            px-2 text-center text-white py-2
         transition-all 
            duration-500 cursor-pointer relative`,

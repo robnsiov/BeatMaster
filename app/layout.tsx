@@ -1,5 +1,3 @@
-"use client";
-
 import RootContainer from "@/components/containers/root";
 import "./globals.css";
 import { Poppins } from "next/font/google";
@@ -16,13 +14,6 @@ export const francico = localFont({
   display: "swap",
 });
 
-const metadata = {
-  title: {
-    template: "Farzam-Remix - %s",
-    default: "Farzam-Remix",
-  },
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -30,6 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <title>Farzam-Remix</title>
+      </head>
       <body className={`overflow-hidden ${poppins.className}`}>
         <RootContainer>{children}</RootContainer>
       </body>

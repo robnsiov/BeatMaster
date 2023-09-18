@@ -75,7 +75,7 @@ const useAuth = () => {
       if (token) {
         localStorage.setItem("token", token);
       }
-      makeToast({ msg: "successfully", type: "success" });
+      // makeToast({ msg: "successfully", type: "success" });
       setShowAuthForm(false);
       setIsAuthenticated("isAuthenticated");
       // set token on cookie or localstorage

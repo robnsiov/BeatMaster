@@ -12,18 +12,18 @@ const Tabs = ({ toggleOpen }: TabsImpl) => {
     <>
       <div className="w-full flex justify-center items-center flex-col">
         <div className="w-full flex justify-center items-center px-5">
-          <Tab
+          {/* <Tab
             onClick={() => setActiveTab("musics")}
             active={activeTab === "musics"}
           >
             Musics
-          </Tab>
-          <Tab
+          </Tab> */}
+          {/* <Tab
             onClick={() => setActiveTab("playlists")}
             active={activeTab === "playlists"}
           >
             Playlists
-          </Tab>
+          </Tab> */}
         </div>
         <div
           className="w-full flex justify-center items-center flex-col
@@ -32,9 +32,9 @@ const Tabs = ({ toggleOpen }: TabsImpl) => {
           <Card active={activeTab === "musics"}>
             <Musics toggleOpen={toggleOpen} />
           </Card>
-          <Card active={activeTab === "playlists"}>
+          {/* <Card active={activeTab === "playlists"}>
             <Musics isPlaylist={true} toggleOpen={toggleOpen} />
-          </Card>
+          </Card> */}
         </div>
       </div>
     </>

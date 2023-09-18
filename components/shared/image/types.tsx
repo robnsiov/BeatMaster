@@ -6,4 +6,5 @@ export default interface ImageImpl {
   alt: string;
   size?: "md" | "lg";
   showLoading?: boolean;
+  loaded?(): void;
 }

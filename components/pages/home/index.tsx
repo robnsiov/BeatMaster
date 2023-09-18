@@ -8,8 +8,18 @@ import Cover from "./cover";
 import { AnimatePresence, motion } from "framer-motion";
 
 const Home = () => {
-  const { goToMusicPage, hide, isFetching, isSuccess, isError, refetch, data } =
-    useHome();
+  const {
+    goToMusicPage,
+    hide,
+    isFetching,
+    isSuccess,
+    isError,
+    refetch,
+    data,
+    imageLoaded,
+    setImageLoaded,
+  } = useHome();
+  console.log(imageLoaded);
   return (
     <>
       <div
@@ -21,11 +31,11 @@ const Home = () => {
             : "opacity-100 visible scale-100"
         )}
       >
-        <LoadingIcon isFetching={isFetching} />
+        <LoadingIcon isFetching={isFetching || !imageLoaded} />
         <div className="absolute inset-0 z-10 flex justify-center items-center">
           <PlayIcon
             goToMusicPage={goToMusicPage}
-            isFetching={isFetching}
+            isFetching={isFetching || !imageLoaded}
             isSuccess={isSuccess}
           />
           <ErrorIcon refetch={refetch} isError={isError} />
@@ -37,7 +47,10 @@ const Home = () => {
               animate={{ scale: 1, opacity: 1 }}
               className="w-full h-full"
             >
-              <Cover src={data.data.cover} />
+              <Cover
+                imageLoaded={() => setImageLoaded(true)}
+                src={data.data.cover}
+              />
             </motion.div>
           )}
         </AnimatePresence>
