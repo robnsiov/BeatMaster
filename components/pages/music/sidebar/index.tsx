@@ -4,6 +4,8 @@ import { useDimensions } from "./use";
 import { MenuToggle } from "./menu-toggle";
 import { useEffect } from "react";
 import Tabs from "./tabs";
+import { useSetRecoilState } from "recoil";
+import sidebarIsOpenState from "@/context/sidebar-is-open";
 
 const itemVariants = {
   hide: { scale: 0.9, opacity: 0, filter: "blur(30px)" },
@@ -12,7 +14,7 @@ const itemVariants = {
 
 const Sidebar = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-
+  const setSidebarStatus = useSetRecoilState(sidebarIsOpenState);
   const {
     dimensions,
     isOpen,
@@ -28,12 +30,16 @@ const Sidebar = () => {
     }
   }, []);
 
+  useEffect(() => {
+    setSidebarStatus(isOpen);
+  }, [isOpen]);
+
   return (
     <motion.div
       variants={itemVariants}
       animate={next ? "hide" : "show"}
       transition={{ duration: 1.5, delay: 1.7 }}
-      className=" absolute top-0 left-0 right-0 bottom-0 w-[300px] z-[170] md:bottom-28
+      className="sidebar fixed top-0 left-0 right-0 bottom-0 w-[300px] z-[170] 
        overflow-hidden"
     >
       <AnimatePresence>
@@ -42,7 +48,7 @@ const Sidebar = () => {
           animate={{ scale: 1, filter: "blur(0px)", opacity: 1 }}
           transition={{ duration: 1, delay: 6 }}
           exit={{ scale: 1.1, filter: "blur(0px)", opacity: 0 }}
-          className="sidebar absolute top-0 left-0 right-0 bottom-0 w-[300px] z-[170] md:bottom-28
+          className="sidebar absolute top-0 left-0 right-0 bottom-0 w-[300px] z-[170]
        overflow-hidden"
         >
           <AnimatePresence>
@@ -52,11 +58,6 @@ const Sidebar = () => {
               custom={dimensions.current.height}
               ref={containerRef}
               className="w-full"
-              style={{
-                bottom:
-                  width < 767 && isOpen ? "0px" : width < 767 ? "112px" : "0",
-                transition: "bottom 0.7s",
-              }}
             >
               <motion.div
                 className="absolute inset-0 w-full bg-transparent"

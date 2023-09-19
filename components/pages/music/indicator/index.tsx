@@ -5,6 +5,8 @@ import IndicatorImpl from "./types";
 import Image from "@/components/shared/image";
 import { usePrevious } from "@mantine/hooks";
 import cls from "classnames";
+import { useRecoilValue } from "recoil";
+import sidebarIsOpenState from "@/context/sidebar-is-open";
 
 const itemVariants = {
   open: { scale: 1, filter: "blur(0px)", opacity: 1 },
@@ -14,11 +16,15 @@ const itemVariants = {
 const Progress = ({ artists, cover, musicSrc, musicName }: IndicatorImpl) => {
   const { isNextMusic: next, initMount } = useIndicator();
   const previousValue = usePrevious(cover);
+  const sidebarIsOpen = useRecoilValue(sidebarIsOpenState);
   return (
     <>
       <div
-        className="absolute bottom-4 left-1/2 -translate-x-1/2
-        z-[60] xl:bottom-3 460px:bottom-[40px] !380px:bottom-[80px] flex justify-center items-center"
+        className={cls(
+          `absolute bottom-4 left-1/2 -translate-x-1/2
+        xl:bottom-3 460px:bottom-[80px] 400px:bottom-[100px] flex justify-center items-center`,
+          sidebarIsOpen ? "z-[60]" : "z-[200]"
+        )}
       >
         <motion.div
           variants={itemVariants}
