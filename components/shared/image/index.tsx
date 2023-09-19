@@ -39,7 +39,7 @@ const Image = ({
         <AnimatePresence>
           {error && (
             <motion.div
-              className="w-full h-full flex justify-center items-center"
+              className="w-full h-full flex justify-center items-center absolute inset-0"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.2 }}
