@@ -3,4 +3,5 @@ export default interface IndicatorImpl {
   artists: Array<string>;
   musicSrc: string;
   cover: string;
+  src: string;
 }

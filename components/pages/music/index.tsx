@@ -22,6 +22,7 @@ const Music = () => {
         {show && music?.data && (
           <>
             <Progress
+              src={music.data.src}
               cover={music.data.cover}
               musicName={music.data.name}
               musicSrc={music.data.src}

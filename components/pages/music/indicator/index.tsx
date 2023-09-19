@@ -7,13 +7,21 @@ import { usePrevious } from "@mantine/hooks";
 import cls from "classnames";
 import { useRecoilValue } from "recoil";
 import sidebarIsOpenState from "@/context/sidebar-is-open";
+import Link from "next/link";
+import { DocumentDownload } from "iconsax-react";
 
 const itemVariants = {
   open: { scale: 1, filter: "blur(0px)", opacity: 1 },
   closed: { width: "70px" },
   translate: { translateY: "100px", filter: "blur(10px)" },
 };
-const Progress = ({ artists, cover, musicSrc, musicName }: IndicatorImpl) => {
+const Progress = ({
+  artists,
+  cover,
+  musicSrc,
+  musicName,
+  src,
+}: IndicatorImpl) => {
   const { isNextMusic: next, initMount } = useIndicator();
   const previousValue = usePrevious(cover);
   const sidebarIsOpen = useRecoilValue(sidebarIsOpenState);
@@ -48,6 +56,14 @@ const Progress = ({ artists, cover, musicSrc, musicName }: IndicatorImpl) => {
                 <div className="relative z-10 p-2 flex justify-between items-center">
                   <div className="flex justify-center items-center">
                     <div className="min-w-[55px] max-w-[55px] aspect-square rounded-lg relative">
+                      <Link
+                        href={src}
+                        download={true}
+                        target="_blank"
+                        className="absolute inset-0 z-50 flex justify-center items-center"
+                      >
+                        <DocumentDownload color="#fff" />
+                      </Link>
                       <span className="w-full absolute inset-0 bg-primary rounded-lg"></span>
                       <div
                         className={cls(
